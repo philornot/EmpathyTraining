@@ -1,3 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Info -->
     <string name="app_name">Empathy Training</string>
+
+    <!-- UI General -->
+    <string name="loading">Loading…</string>
+    <string name="submit">Submit</string>
+    <string name="back">Back</string>
+    <string name="view">View</string>
+    <string name="start">Start</string>
+    <string name="continue_action">Continue</string>
+
+    <!-- Progress Screen -->
+    <string name="progress_title">Your Progress</string>
+    <string name="progress_loading">Loading your progress…</string>
+    <string name="level_format">Level %d</string>
+    <string name="current_streak">Current Streak</string>
+    <string name="statistics_overview">Statistics Overview</string>
+    <string name="total_responses">Total Responses</string>
+    <string name="active_days">Active Days</string>
+    <string name="scenarios_completed">Scenarios Completed</string>
+    <string name="activity_rate">Activity Rate</string>
+    <string name="consistency">Consistency</string>
+    <string name="response_quality">Response Quality</string>
+    <string name="avg_characters">avg. characters</string>
+    <string name="avg_rating">avg. rating</string>
+    <string name="examples_viewed">examples viewed</string>
+    <string name="next_milestone">Next Milestone</string>
+    <string name="milestone_encouragement">Keep up the great work! Every response makes you more empathetic.</string>
+    <string name="view_todays_challenge">View Today\'s Challenge</string>
+    <string name="start_todays_challenge">Start Today\'s Challenge</string>
+
+    <!-- Streak Days -->
+    <plurals name="days_current">
+        <item quantity="one">day current</item>
+        <item quantity="other">days current</item>
+    </plurals>
+    <plurals name="days_best">
+        <item quantity="one">day best</item>
+        <item quantity="other">days best</item>
+    </plurals>
+    <plurals name="day_streak">
+        <item quantity="one">day streak</item>
+        <item quantity="other">day streak</item>
+    </plurals>
+    <plurals name="responses_count">
+        <item quantity="one">response</item>
+        <item quantity="other">responses</item>
+    </plurals>
+
+    <!-- History Screen -->
+    <string name="history_title">Your Response History</string>
+    <string name="no_responses_yet">No responses yet</string>
+    <string name="no_responses_description">Complete your first daily challenge to see your empathy responses here.</string>
+    <string name="scenario_label">Scenario:</string>
+    <string name="your_response_label">Your Response:</string>
+    <string name="characters_count">%d characters</string>
+    <string name="viewed_example">✓ Viewed example response</string>
+    <string name="rating_format">%d/5</string>
+
+    <!-- Daily Challenge Screen -->
+    <string name="daily_empathy_challenge">Daily Empathy Challenge</string>
+    <string name="challenge_loading">Loading today\'s challenge…</string>
+    <string name="challenge_completed_title">Great job! You\'ve completed today\'s challenge.</string>
+    <string name="view_your_responses">View Your Responses</string>
+    <string name="no_more_challenges_today">No more challenges today</string>
+    <string name="completed_all_scenarios">You\'ve completed all available scenarios for today. Great work on your empathy practice!</string>
+    <string name="review_your_progress">Review Your Progress</string>
+    <string name="someone_says">Someone says:</string>
+    <string name="how_would_you_respond">How would you respond with empathy?</string>
+    <string name="your_empathetic_response">Your empathetic response</string>
+    <string name="response_placeholder">Type your response here…</string>
+    <string name="submit_response">Submit Response</string>
+    <string name="see_example_response">See Example Response</string>
+    <string name="example_response_label">Example Response:</string>
+
+    <!-- User Level Descriptions -->
+    <string name="level_1_desc">Beginner - Just starting your journey</string>
+    <string name="level_2_desc">Novice - Learning the basics</string>
+    <string name="level_3_desc">Student - Understanding empathy</string>
+    <string name="level_4_desc">Practitioner - Developing skills</string>
+    <string name="level_5_desc">Skilled - Good empathy awareness</string>
+    <string name="level_6_desc">Advanced - Strong empathy skills</string>
+    <string name="level_7_desc">Expert - Excellent empathy response</string>
+    <string name="level_8_desc">Master - Outstanding empathy abilities</string>
+    <string name="level_9_desc">Guru - Exceptional empathy mastery</string>
+    <string name="level_10_desc">Sage - Empathy wisdom achieved</string>
+
+    <!-- Streak Status Descriptions -->
+    <string name="streak_start">Start your streak today!</string>
+    <string name="streak_great_start">Great start! Keep it going.</string>
+    <string name="streak_building_momentum">Building momentum! %d days strong.</string>
+    <string name="streak_excellent">Excellent streak! %d days in a row.</string>
+    <string name="streak_amazing">Amazing dedication! %d days straight.</string>
+    <string name="streak_incredible">Incredible! You\'re a empathy master with %d days!</string>
+
+    <!-- Motivational Messages -->
+    <string name="motivation_welcome">Welcome! Ready to start your empathy journey?</string>
+    <string name="motivation_great_start">Great start! Every response makes you more empathetic.</string>
+    <string name="motivation_building_habits">You\'re building great habits! Keep practicing.</string>
+    <string name="motivation_wonderful_progress">Wonderful progress! Your empathy skills are growing.</string>
+    <string name="motivation_impressive">Impressive dedication! You\'re becoming truly empathetic.</string>
+    <string name="motivation_expert">You\'re an empathy expert! Your kindness makes a difference.</string>
+
+    <!-- Milestone Messages -->
+    <string name="milestone_3_days">Respond for 3 days in a row</string>
+    <string name="milestone_week">Complete your first week</string>
+    <string name="milestone_2_weeks">Achieve a 2-week streak</string>
+    <string name="milestone_month">Reach a 1-month streak</string>
+    <string name="milestone_100_days">Aim for 100 days in a row</string>
+    <string name="milestone_all_achieved">You\'ve achieved all major milestones!</string>
+
+    <!-- Quality Assessments -->
+    <string name="quality_great">Great response!</string>
+    <string name="quality_good">Good response</string>
+    <string name="quality_decent">Decent response</string>
+    <string name="quality_thoughtful">Thoughtful response</string>
+    <string name="quality_good_length">Good length response</string>
+    <string name="quality_brief">Brief response</string>
+    <string name="quality_very_brief">Very brief response</string>
+
+    <!-- Response Time Descriptions -->
+    <string name="time_not_tracked">Time not tracked</string>
+    <string name="time_quick">Quick response (%ds)</string>
+    <string name="time_moderate">Moderate thinking (%ds)</string>
+    <string name="time_thoughtful">Thoughtful consideration (%dm)</string>
+    <string name="time_deep">Deep reflection (%dm)</string>
+
+    <!-- Time Ago Descriptions -->
+    <string name="time_today">Today</string>
+    <string name="time_yesterday">Yesterday</string>
+    <plurals name="days_ago">
+        <item quantity="one">%d day ago</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
+    <plurals name="weeks_ago">
+        <item quantity="one">1 week ago</item>
+        <item quantity="other">%d weeks ago</item>
+    </plurals>
+    <plurals name="months_ago">
+        <item quantity="one">1 month ago</item>
+        <item quantity="other">%d months ago</item>
+    </plurals>
+
+    <!-- Content Descriptions for Accessibility -->
+    <string name="cd_streak">Streak</string>
+    <string name="cd_quality">Quality</string>
+    <string name="cd_milestone">Milestone</string>
+    <string name="cd_challenge">Challenge</string>
+    <string name="cd_no_responses">No responses</string>
+    <string name="cd_date">Date</string>
+    <string name="cd_rating">Rating</string>
+    <string name="cd_completed">Completed</string>
+
+    <!-- Achievement Names -->
+    <string name="achievement_first_response">First Steps - Completed your first empathy response</string>
+    <string name="achievement_three_day_streak">Building Habits - 3 days in a row</string>
+    <string name="achievement_week_streak">Weekly Warrior - 7 days straight</string>
+    <string name="achievement_two_week_streak">Consistent Learner - 14 days in a row</string>
+    <string name="achievement_month_streak">Monthly Master - 30 days straight</string>
+    <string name="achievement_fifty_responses">Half Century - 50 total responses</string>
+    <string name="achievement_hundred_responses">Century Club - 100 total responses</string>
+    <string name="achievement_scenario_variety">Explorer - Completed 20+ different scenarios</string>
+    <string name="achievement_example_learner">Student - Viewed 25+ example responses</string>
+    <string name="achievement_self_reflector">Thoughtful - Provided 50+ self ratings</string>
+    <string name="achievement_consistent_user">Dedicated - 80%+ activity rate</string>
+    <string name="achievement_empathy_master">Master - All achievements unlocked</string>
+
+    <!-- Self-Rating Descriptions -->
+    <string name="rating_1_desc">Poor - I could do much better</string>
+    <string name="rating_2_desc">Fair - Some empathy shown</string>
+    <string name="rating_3_desc">Good - Decent empathetic response</string>
+    <string name="rating_4_desc">Great - Strong empathy demonstrated</string>
+    <string name="rating_5_desc">Excellent - Very empathetic and supportive</string>
+
+    <!-- Categories -->
+    <string name="category_work">Work</string>
+    <string name="category_relationships">Relationships</string>
+    <string name="category_family">Family</string>
+    <string name="category_personal">Personal</string>
+    <string name="category_health">Health</string>
+    <string name="category_friendship">Friendship</string>
+    <string name="category_education">Education</string>
+    <string name="category_general">General</string>
+
+    <!-- Default Messages -->
+    <string name="default_motivation">Keep practicing empathy!</string>
+    <string name="unknown_date">Unknown date</string>
+    <string name="unknown_time">Unknown time</string>
+
+    <!-- Language Selection -->
+    <string name="language_settings">Language Settings</string>
+    <string name="select_language">Select Language</string>
+    <string name="language_english">English</string>
+    <string name="language_polish">Polski</string>
+    <string name="language_system">System Default</string>
+    <string name="language_changed">Language changed successfully</string>
+
+    <!-- Difficulty Levels - completely missing from both files -->
+    <string name="difficulty_very_easy">Very Easy</string>
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_medium">Medium</string>
+    <string name="difficulty_hard">Hard</string>
+    <string name="difficulty_very_hard">Very Hard</string>
+    <string name="difficulty_unknown">Unknown difficulty</string>
+    <string name="streak_start_today">Start your streak today!</string>
+    <string name="motivation_getting_started">Great start! Every response makes you more empathetic.</string>
+    <string name="motivation_good_progress">Wonderful progress! Your empathy skills are growing.</string>
 </resources>

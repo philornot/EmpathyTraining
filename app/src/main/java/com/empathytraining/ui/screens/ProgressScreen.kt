@@ -30,6 +30,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -37,19 +40,12 @@ import androidx.compose.ui.unit.dp
 import com.empathytraining.R
 import com.empathytraining.data.models.UserProgress
 import com.empathytraining.data.repository.EmpathyRepository
+import com.empathytraining.utils.LocalizationUtils
 import timber.log.Timber
-import java.util.Locale
 
 /**
  * Progress Screen - Shows user statistics, achievements, and motivation
- *
- * This screen displays:
- * - Current and longest streaks with visual indicators
- * - Total statistics (responses, active days, scenarios completed)
- * - User level and progress to next level
- * - Average response quality metrics
- * - Motivational messages and next milestones
- * - Quick action to start today's challenge
+ * Now with full internationalization support
  */
 @Composable
 fun ProgressScreen(
@@ -59,6 +55,7 @@ fun ProgressScreen(
 ) {
     Timber.d("Composing Progress Screen")
 
+    LocalContext.current
     // Collect user progress from repository
     val userProgress by repository.getUserProgress().collectAsState(initial = null)
 
@@ -73,7 +70,7 @@ fun ProgressScreen(
     ) {
         // Screen header
         Text(
-            text = "Your Progress",
+            text = stringResource(R.string.progress_title),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 8.dp)
@@ -109,7 +106,8 @@ private fun LoadingProgressContent(
         ) {
             CircularProgressIndicator()
             Text(
-                text = "Loading your progress...", style = MaterialTheme.typography.bodyLarge
+                text = stringResource(R.string.progress_loading),
+                style = MaterialTheme.typography.bodyLarge
             )
         }
     }
@@ -153,6 +151,8 @@ private fun MotivationalHeader(
     userProgress: UserProgress,
     modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
+
     Card(
         modifier = modifier.fillMaxWidth(), colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
@@ -165,14 +165,14 @@ private fun MotivationalHeader(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Level ${userProgress.getUserLevel()}",
+                text = stringResource(R.string.level_format, userProgress.getUserLevel()),
                 style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold
             )
 
             Text(
-                text = userProgress.getLevelDescription(),
+                text = LocalizationUtils.getLevelDescription(context, userProgress.getUserLevel()),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
                 textAlign = TextAlign.Center
@@ -181,7 +181,10 @@ private fun MotivationalHeader(
             Spacer(modifier = Modifier.height(12.dp))
 
             Text(
-                text = userProgress.getMotivationalMessage(),
+                text = LocalizationUtils.getMotivationalMessage(
+                    context,
+                    userProgress.totalResponses
+                ),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
                 textAlign = TextAlign.Center
@@ -196,6 +199,8 @@ private fun StreakCard(
     userProgress: UserProgress,
     modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
+
     Card(
         modifier = modifier.fillMaxWidth(), colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.secondaryContainer
@@ -211,7 +216,7 @@ private fun StreakCard(
             ) {
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.local_fire_department),
-                    contentDescription = "Streak",
+                    contentDescription = stringResource(R.string.cd_streak),
                     tint = MaterialTheme.colorScheme.secondary,
                     modifier = Modifier.size(32.dp)
                 )
@@ -220,14 +225,16 @@ private fun StreakCard(
 
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Current Streak",
+                        text = stringResource(R.string.current_streak),
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.onSecondaryContainer,
                         fontWeight = FontWeight.SemiBold
                     )
 
                     Text(
-                        text = userProgress.getStreakStatusDescription(),
+                        text = LocalizationUtils.getStreakStatusDescription(
+                            context, userProgress.currentStreak
+                        ),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSecondaryContainer
                     )
@@ -248,7 +255,9 @@ private fun StreakCard(
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = "days current",
+                        text = pluralStringResource(
+                            R.plurals.days_current, userProgress.currentStreak
+                        ),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSecondaryContainer
                     )
@@ -263,7 +272,9 @@ private fun StreakCard(
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = "days best",
+                        text = pluralStringResource(
+                            R.plurals.days_best, userProgress.longestStreak
+                        ),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSecondaryContainer
                     )
@@ -288,7 +299,7 @@ private fun StatisticsCard(
                 .padding(20.dp)
         ) {
             Text(
-                text = "Statistics Overview",
+                text = stringResource(R.string.statistics_overview),
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(bottom = 16.dp)
@@ -304,13 +315,13 @@ private fun StatisticsCard(
                 ) {
                     StatisticItem(
                         value = "${userProgress.totalResponses}",
-                        label = "Total Responses",
+                        label = stringResource(R.string.total_responses),
                         modifier = Modifier.weight(1f)
                     )
 
                     StatisticItem(
                         value = "${userProgress.totalActiveDays}",
-                        label = "Active Days",
+                        label = stringResource(R.string.active_days),
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -321,13 +332,13 @@ private fun StatisticsCard(
                 ) {
                     StatisticItem(
                         value = "${userProgress.uniqueScenariosCompleted}",
-                        label = "Scenarios Completed",
+                        label = stringResource(R.string.scenarios_completed),
                         modifier = Modifier.weight(1f)
                     )
 
                     StatisticItem(
                         value = userProgress.getFormattedActivityPercentage(),
-                        label = "Activity Rate",
+                        label = stringResource(R.string.activity_rate),
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -343,7 +354,7 @@ private fun StatisticsCard(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Consistency",
+                        text = stringResource(R.string.consistency),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -419,7 +430,7 @@ private fun QualityMetricsCard(
             ) {
                 Icon(
                     imageVector = Icons.Filled.Star,
-                    contentDescription = "Quality",
+                    contentDescription = stringResource(R.string.cd_quality),
                     tint = MaterialTheme.colorScheme.tertiary,
                     modifier = Modifier.size(24.dp)
                 )
@@ -427,7 +438,7 @@ private fun QualityMetricsCard(
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
-                    text = "Response Quality",
+                    text = stringResource(R.string.response_quality),
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.onTertiaryContainer,
                     fontWeight = FontWeight.SemiBold
@@ -446,7 +457,7 @@ private fun QualityMetricsCard(
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = "avg. characters",
+                        text = stringResource(R.string.avg_characters),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onTertiaryContainer
                     )
@@ -457,7 +468,7 @@ private fun QualityMetricsCard(
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
                             text = String.format(
-                                Locale.getDefault(),
+                                java.util.Locale.getDefault(),
                                 "%.1f",
                                 userProgress.averageSelfRating
                             ),
@@ -466,7 +477,7 @@ private fun QualityMetricsCard(
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            text = "avg. rating",
+                            text = stringResource(R.string.avg_rating),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onTertiaryContainer
                         )
@@ -482,7 +493,7 @@ private fun QualityMetricsCard(
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = "examples viewed",
+                        text = stringResource(R.string.examples_viewed),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onTertiaryContainer
                     )
@@ -498,6 +509,8 @@ private fun MilestoneCard(
     userProgress: UserProgress,
     modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
+
     Card(
         modifier = modifier.fillMaxWidth(), colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
@@ -514,21 +527,21 @@ private fun MilestoneCard(
             ) {
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.flag),
-                    contentDescription = "Milestone",
+                    contentDescription = stringResource(R.string.cd_milestone),
                     tint = MaterialTheme.colorScheme.primary
                 )
 
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
-                    text = "Next Milestone",
+                    text = stringResource(R.string.next_milestone),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold
                 )
             }
 
             Text(
-                text = userProgress.getNextMilestone(),
+                text = LocalizationUtils.getNextMilestone(context, userProgress.currentStreak),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -536,7 +549,7 @@ private fun MilestoneCard(
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "Keep up the great work! Every response makes you more empathetic.",
+                text = stringResource(R.string.milestone_encouragement),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -556,16 +569,16 @@ private fun ActionButton(
     ) {
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.psychology),
-            contentDescription = "Challenge"
+            contentDescription = stringResource(R.string.cd_challenge)
         )
 
         Spacer(modifier = Modifier.width(8.dp))
 
         Text(
             text = if (userProgress.hasRespondedToday()) {
-                "View Today's Challenge"
+                stringResource(R.string.view_todays_challenge)
             } else {
-                "Start Today's Challenge"
+                stringResource(R.string.start_todays_challenge)
             }
         )
     }
