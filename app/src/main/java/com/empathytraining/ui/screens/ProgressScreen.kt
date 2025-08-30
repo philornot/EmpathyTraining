@@ -24,9 +24,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.empathytraining.R
 import com.empathytraining.data.repository.EmpathyRepository
-import com.empathytraining.ui.components.NoProgressState
-import com.empathytraining.ui.components.ProgressContent
-import com.empathytraining.ui.components.ProgressLoadingState
+import com.empathytraining.ui.components.progress.NoProgressState
+import com.empathytraining.ui.components.progress.ProgressContent
+import com.empathytraining.ui.components.progress.LoadingState
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -101,7 +101,7 @@ fun ProgressScreen(
         )
 
         when {
-            isLoading -> ProgressLoadingState()
+            isLoading -> LoadingState()
             userProgress == null -> NoProgressState(onNavigateToChallenge)
             else -> ProgressContent(
                 userProgress = userProgress!!,

@@ -33,7 +33,7 @@ object LocalizationUtils {
                 "Scenario not available in current language"
             }
         } catch (e: Exception) {
-            "Scenario not available"
+            "Scenario not available ($e)"
         }
     }
 
@@ -56,7 +56,7 @@ object LocalizationUtils {
                 "Example not available in current language"
             }
         } catch (e: Exception) {
-            "Example not available"
+            "Example not available ($e)"
         }
     }
 
@@ -220,7 +220,7 @@ object LocalizationUtils {
      * @param daysAgo Number of days since response was created
      * @return Localized "time ago" string
      */
-    fun getTimeAgoText(context: Context, daysAgo: Long): String {
+    fun getTimeAgoText(context: Context, daysAgo: Long): String { // todo use me plsss :)
         val resources = context.resources // Get the Resources object from the context
 
         return when (daysAgo) {
@@ -229,18 +229,15 @@ object LocalizationUtils {
 
             // For 2 to 6 days, use the "days_ago" plurals resource
             in 2L..6L -> resources.getQuantityString(
-                R.plurals.days_ago, // The ID of the plurals resource
+                R.plurals.days_ago,
                 daysAgo.toInt(),    // The quantity to determine "one" or "other"
                 daysAgo.toInt()     // The argument to substitute for %d in the string
             )
 
             // For 7 to 13 days (which will always be 1 week)
             in 7L..13L -> {
-                val weeks = 1 // In this range, it's always one week
                 resources.getQuantityString(
-                    R.plurals.weeks_ago, // The ID of the plurals resource
-                    weeks,               // Quantity is 1, so it will pick "one" form ("1 week ago")
-                    weeks                // Argument for %d if the "other" form were used (not relevant here but good practice)
+                    R.plurals.weeks_ago, 1
                 )
             }
 
@@ -255,11 +252,8 @@ object LocalizationUtils {
 
             // For 30 to 59 days (which will always be 1 month)
             in 30L..59L -> {
-                val months = 1 // In this range, it's always one month
                 resources.getQuantityString(
-                    R.plurals.months_ago, // The ID of the plurals resource
-                    months,               // Quantity is 1, so it will pick "one" form ("1 month ago")
-                    months                // Argument for %d if the "other" form were used
+                    R.plurals.months_ago, 1
                 )
             }
 

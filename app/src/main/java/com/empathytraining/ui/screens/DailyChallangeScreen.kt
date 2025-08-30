@@ -1,20 +1,38 @@
 package com.empathytraining.ui.screens
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.empathytraining.R
 import com.empathytraining.data.repository.EmpathyRepository
-import com.empathytraining.ui.components.ChallengeContent
-import com.empathytraining.ui.components.ProgressHeader
-import com.empathytraining.ui.components.StatusCard
+import com.empathytraining.ui.components.challenge.ChallengeContent
+import com.empathytraining.ui.components.challenge.CompletedState
+import com.empathytraining.ui.components.challenge.HeaderTitle
+import com.empathytraining.ui.components.challenge.LevelAndMotivationSection
+import com.empathytraining.ui.components.challenge.LoadingState
+import com.empathytraining.ui.components.challenge.MainStatsRow
+import com.empathytraining.ui.components.challenge.NoScenarioState
+import com.empathytraining.ui.components.challenge.TodayProgressSection
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -27,12 +45,12 @@ fun DailyChallengeScreen(
     val context = LocalContext.current
     var todaysScenario by remember { mutableStateOf<EmpathyRepository.LocalizedScenario?>(null) }
     var userResponse by remember { mutableStateOf("") }
-    var responseTimeStart by remember { mutableStateOf(0L) }
+    var responseTimeStart by remember { mutableLongStateOf(0L) }
     var selfRating by remember { mutableStateOf<Int?>(null) }
     var hasSubmitted by remember { mutableStateOf(false) }
     var showExample by remember { mutableStateOf(false) }
     var isLoading by remember { mutableStateOf(true) }
-    var todayResponseCount by remember { mutableStateOf(0) }
+    var todayResponseCount by remember { mutableIntStateOf(0) }
 
     val coroutineScope = rememberCoroutineScope()
     val userProgress by repository.getUserProgress().collectAsState(initial = null)
@@ -59,13 +77,14 @@ fun DailyChallengeScreen(
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // Enhanced Progress Header with today's responses
+        // Progress Header
         ProgressHeader(
             userProgress = userProgress,
             todayResponseCount = todayResponseCount,
-            todaysResponses = todaysResponses
+            todayResponses = todaysResponses
         )
 
+        // Main Content based on current state
         when {
             isLoading -> LoadingState()
             todayResponseCount >= 3 -> CompletedState(userProgress, onNavigateToHistory)
@@ -97,12 +116,10 @@ fun DailyChallengeScreen(
                 },
                 onShowExample = {
                     showExample = true
-                    // Mark example as viewed in repository
                     coroutineScope.launch {
                         try {
-                            // We need the response ID to mark example viewed
-                            // This would need to be tracked after submission
-                            // For now, we can track it at the progress level
+                            // Mark example as viewed in repository if needed
+                            // This can be tracked at the progress level
                         } catch (e: Exception) {
                             Timber.e(e, "Error marking example viewed")
                         }
@@ -113,39 +130,50 @@ fun DailyChallengeScreen(
 }
 
 @Composable
-private fun LoadingState() {
-    Box(
-        modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center
+private fun ProgressHeader(
+    userProgress: com.empathytraining.data.models.UserProgress?,
+    todayResponseCount: Int,
+    todayResponses: List<com.empathytraining.data.models.UserResponse>,
+) {
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer
+        )
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            CircularProgressIndicator()
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(stringResource(R.string.challenge_loading))
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            // Header title
+            HeaderTitle()
+
+            // User progress stats
+            userProgress?.let { progress ->
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    // Level and motivation
+                    LevelAndMotivationSection(userProgress = progress)
+
+                    // Main stats
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        MainStatsRow(
+                            currentStreak = progress.currentStreak,
+                            totalResponses = progress.totalResponses
+                        )
+                    }
+
+                    // Today's progress
+                    TodayProgressSection(
+                        todayResponseCount = todayResponseCount, todayResponses = todayResponses
+                    )
+                }
+            }
         }
     }
-}
-
-@Composable
-private fun CompletedState(
-    userProgress: com.empathytraining.data.models.UserProgress?,
-    onNavigateToHistory: () -> Unit,
-) {
-    StatusCard(
-        icon = R.drawable.check_circle,
-        title = stringResource(R.string.challenge_completed),
-        message = userProgress?.getMotivationalMessage()
-            ?: stringResource(R.string.keep_practicing),
-        buttonText = stringResource(R.string.view_responses),
-        onButtonClick = onNavigateToHistory
-    )
-}
-
-@Composable
-private fun NoScenarioState(onNavigateToHistory: () -> Unit) {
-    StatusCard(
-        title = stringResource(R.string.no_more_challenges),
-        message = stringResource(R.string.all_scenarios_completed),
-        buttonText = stringResource(R.string.review_progress),
-        onButtonClick = onNavigateToHistory
-    )
 }
