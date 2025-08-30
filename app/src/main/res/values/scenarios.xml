@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Work Category Scenarios -->
+    <string name="scenario_work_exhausted">I\'m so exhausted from this job. I work 10-hour days and barely have time for anything else.</string>
+    <string name="scenario_work_exhausted_example">That sounds incredibly draining. Working such long hours must be taking a real toll on you. Have you been able to talk to anyone about finding a better work-life balance?</string>
+
+    <string name="scenario_work_unappreciated">My boss never appreciates anything I do. I put in so much effort but it feels invisible.</string>
+    <string name="scenario_work_unappreciated_example">It must be so frustrating to work hard and not feel recognized for your efforts. Feeling invisible at work can be really discouraging. Your contributions do matter, even if they\'re not being acknowledged right now.</string>
+
+    <string name="scenario_work_promotion">I got passed over for the promotion again. I don\'t understand what I\'m doing wrong.</string>
+    <string name="scenario_work_promotion_example">That must be such a disappointment, especially when you\'ve been working toward it. Not getting the promotion you deserve can feel really deflating. Have you been able to get any feedback about what might help you in future opportunities?</string>
+
+    <string name="scenario_work_job_loss">I lost my job and I don\'t know how I\'m going to pay my bills.</string>
+    <string name="scenario_work_job_loss_example">Losing your job is not just about losing income - it affects your security, identity, and peace of mind. The financial stress must be overwhelming right now. This is a really tough situation, and it\'s okay to feel scared and uncertain about what comes next.</string>
+
+    <!-- Relationships Category Scenarios -->
+    <string name="scenario_relationships_fighting">My partner and I keep fighting about the same things over and over. Nothing seems to get resolved.</string>
+    <string name="scenario_relationships_fighting_example">Repeating the same arguments can be so exhausting and frustrating for both of you. It sounds like you\'re both stuck in a pattern that isn\'t working. Sometimes talking with a counselor can help break those cycles and find new ways to communicate.</string>
+
+    <string name="scenario_relationships_not_listening">I feel like my partner doesn\'t really listen to me anymore. We\'re growing apart.</string>
+    <string name="scenario_relationships_not_listening_example">Feeling unheard by someone you love can be really lonely and painful. It\'s hard when you sense that distance growing. Have you been able to share with your partner how you\'re feeling about the communication between you two?</string>
+
+    <string name="scenario_relationships_breakup">I\'m going through a breakup and I feel like my world is falling apart.</string>
+    <string name="scenario_relationships_breakup_example">Breakups can feel absolutely devastating, especially when that person was such a big part of your life. It makes sense that everything feels overwhelming right now. These feelings are so valid, and healing takes time. You don\'t have to go through this alone.</string>
+
+    <!-- Family Category Scenarios -->
+    <string name="scenario_family_independence">My parents still treat me like a child even though I\'m 25. They question every decision I make.</string>
+    <string name="scenario_family_independence_example">That must feel so frustrating when you\'re trying to establish your independence as an adult. It can be hard when parents struggle to adjust to the relationship changing as you grow up. Your feelings about wanting more respect for your autonomy are completely understandable.</string>
+
+    <string name="scenario_family_teenager">My teenage daughter won\'t talk to me anymore. I feel like I\'m losing her.</string>
+    <string name="scenario_family_teenager_example">That must be so heartbreaking as a parent. The teenage years can create such distance, and it\'s natural to feel worried about your connection with her. Your love for her comes through clearly, and that foundation matters even when communication is difficult.</string>
+
+    <string name="scenario_family_caregiving">I\'m the only one who takes care of my aging parents. My siblings never help.</string>
+    <string name="scenario_family_caregiving_example">Carrying that responsibility largely on your own must be incredibly overwhelming and exhausting. It\'s understandable to feel resentful when the care isn\'t shared equally. You\'re doing something really important and difficult, and it\'s okay to feel frustrated about the lack of support.</string>
+
+    <!-- Personal Category Scenarios -->
+    <string name="scenario_personal_not_good_enough">I feel like I\'m not good enough at anything. Everyone else seems to have it figured out.</string>
+    <string name="scenario_personal_not_good_enough_example">Those feelings of not measuring up can be so heavy to carry. Social media and comparing ourselves to others can make it seem like everyone else has life figured out, but that\'s rarely the reality. You have unique strengths and value, even when it\'s hard to see them.</string>
+
+    <string name="scenario_personal_stuck_pattern">I keep making the same mistakes over and over. I feel stuck in a pattern I can\'t break.</string>
+    <string name="scenario_personal_stuck_pattern_example">Breaking patterns can feel impossible, especially when you\'re aware of them but still find yourself repeating them. It\'s actually a sign of growth that you recognize the pattern. Change is hard and takes time - be patient with yourself as you work through this.</string>
+
+    <string name="scenario_personal_directionless">I don\'t know what I want to do with my life. I feel lost and directionless.</string>
+    <string name="scenario_personal_directionless_example">Feeling uncertain about your path can be really unsettling, especially when it seems like you should have answers. It\'s okay not to have everything figured out - many people feel this way even if they don\'t show it. Taking time to explore what matters to you is valuable, not wasteful.</string>
+
+    <string name="scenario_personal_pet_loss">My pet died and everyone keeps saying \'it was just an animal\' but I\'m heartbroken.</string>
+    <string name="scenario_personal_pet_loss_example">The loss of a beloved pet is a real and profound grief. Pets become family members and their loss leaves a genuine hole in your heart. Don\'t let anyone minimize your pain - your grief is valid and your pet\'s life mattered deeply.</string>
+
+    <!-- Health Category Scenarios -->
+    <string name="scenario_health_chronic_pain">I\'ve been dealing with chronic pain for months and doctors can\'t figure out what\'s wrong.</string>
+    <string name="scenario_health_chronic_pain_example">Living with chronic pain while not having answers must be incredibly frustrating and scary. Not knowing what\'s causing it adds another layer of stress to already difficult situation. Your pain is real and valid, regardless of whether doctors have found the cause yet.</string>
+
+    <string name="scenario_health_anxiety">I\'ve been feeling really anxious lately and it\'s affecting everything I do.</string>
+    <string name="scenario_health_anxiety_example">Anxiety can be so overwhelming when it starts impacting all areas of your life. It takes courage to acknowledge what you\'re going through. There are ways to manage anxiety, and reaching out for support - whether from friends, family, or professionals - can make a real difference.</string>
+
+    <string name="scenario_health_depression">I\'m struggling with depression and I can barely get out of bed most days.</string>
+    <string name="scenario_health_depression_example">Depression can make even the simplest tasks feel overwhelming and exhausting. Just getting through each day takes incredible strength, even when it doesn\'t feel like it. You deserve support and care - please consider reaching out to a mental health professional if you haven\'t already.</string>
+
+    <!-- Friendship Category Scenarios -->
+    <string name="scenario_friendship_betrayal">I found out my best friend has been talking about me behind my back.</string>
+    <string name="scenario_friendship_betrayal_example">Discovering that betrayal from someone you trusted so deeply must be incredibly painful and shocking. It\'s natural to feel hurt, angry, and confused. Take time to process these feelings before deciding how to handle the situation with your friend.</string>
+
+    <string name="scenario_friendship_one_sided">I feel like I don\'t have any real friends. I\'m always the one reaching out first.</string>
+    <string name="scenario_friendship_one_sided_example">That can feel so lonely and one-sided when you\'re always the one initiating. It\'s exhausting to feel like you\'re putting in all the effort in friendships. Your desire for more balanced, mutual friendships is completely reasonable and you deserve connections where the effort goes both ways.</string>
+
+    <string name="scenario_friendship_excluded">My friend group excluded me from plans and I found out through social media.</string>
+    <string name="scenario_friendship_excluded_example">Finding out you were left out through social media must have been such a painful shock. Being excluded by people you consider friends is heartbreaking and confusing. Your feelings of hurt and disappointment are completely valid.</string>
+
+    <!-- Education Category Scenarios -->
+    <string name="scenario_education_failing">I\'m failing my classes and I don\'t know how to catch up. I feel overwhelmed.</string>
+    <string name="scenario_education_failing_example">Feeling behind academically can create such overwhelming stress and anxiety. It\'s understandable to feel lost when the work feels insurmountable. Remember that asking for help - from teachers, tutors, or counselors - is a sign of strength, not weakness.</string>
+
+    <string name="scenario_education_rejection">I got rejected from my dream college. I don\'t know what to do now.</string>
+    <string name="scenario_education_rejection_example">College rejection, especially from your dream school, can feel like such a crushing disappointment. It\'s okay to grieve this loss and feel upset about it. This doesn\'t define your worth or your future - there are many paths to success and fulfillment.</string>
+
+    <!-- General Category Scenarios -->
+    <string name="scenario_general_everything_wrong">Everything in my life seems to be going wrong at once.</string>
+    <string name="scenario_general_everything_wrong_example">When multiple difficult things happen at the same time, it can feel absolutely overwhelming and unfair. It makes sense that you feel like you can\'t catch a break. Taking things one day or even one moment at a time can help when everything feels like too much.</string>
+
+    <string name="scenario_general_misunderstood">I feel like nobody really understands me or what I\'m going through.</string>
+    <string name="scenario_general_misunderstood_example">Feeling misunderstood can be so isolating and lonely. It\'s hard when you feel like you\'re going through something that others can\'t relate to or grasp. Your experiences and feelings are valid, even if others haven\'t walked in your shoes.</string>
+
+    <string name="scenario_general_uncertain_future">I\'m scared about the future and all the uncertainty ahead.</string>
+    <string name="scenario_general_uncertain_future_example">Uncertainty about the future can create such deep anxiety and fear. Not knowing what\'s coming next is one of the hardest things humans deal with. Your fears are understandable - facing an uncertain future takes courage, and you\'re braver than you might realize.</string>
+
+    <string name="scenario_general_disappointing">I feel like I\'m always disappointing the people I care about.</string>
+    <string name="scenario_general_disappointing_example">Carrying the weight of feeling like you\'re letting others down can be exhausting and heartbreaking. That pressure to meet everyone\'s expectations is so heavy. Remember that you\'re human, and the people who truly care about you understand that nobody is perfect.</string>
+</resources>

@@ -238,4 +238,109 @@
     <string name="difficulty_hard">Hard</string>
     <string name="difficulty_very_hard">Very Hard</string>
     <string name="difficulty_unknown">Unknown difficulty</string>
+
+    <!-- History Screen Enhancements -->
+    <string name="recent_responses">Recent Responses</string>
+    <string name="all_responses">All Responses</string>
+    <string name="responses_for_date">Responses for %s</string>
+    <string name="no_responses_for_date">No responses found for this date</string>
+    <string name="comprehensive_statistics">Comprehensive Statistics</string>
+    <string name="unique_scenarios">Unique Scenarios</string>
+    <string name="and_more_responses">...and %d more responses</string>
+
+    <!-- Progress Screen Enhancements -->
+    <string name="no_progress_yet">No progress yet</string>
+    <string name="today_activity">Today\'s Activity</string>
+    <string name="completed_today_count">Completed %d responses today</string>
+    <string name="not_completed_today">Haven\'t completed today\'s challenge yet</string>
+    <string name="todays_response_count">You\'ve made %d responses today</string>
+    <string name="recent_activity">Recent Activity</string>
+    <string name="active_scenarios_info">%d scenarios available to practice</string>
+    <string name="active_scenarios_available">Available Scenarios</string>
+    <string name="rated_responses">Rated Responses</string>
+
+    <!-- Difficulty Settings -->
+    <string name="difficulty_settings">Difficulty Settings</string>
+    <string name="current_difficulty_level">Current level: %s</string>
+    <string name="select_difficulty_level">Select Difficulty Level</string>
+    <string name="change">Change</string>
+    <string name="close">Close</string>
+
+    <!-- Resource Validation -->
+    <string name="resource_validation_warning">Resource Validation Warning</string>
+    <string name="missing_resources_count">%d missing scenario resources detected</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_warning">Warning</string>
+    <string name="cd_today">Today</string>
+    <string name="cd_settings">Settings</string>
+
+    <!-- Additional Time/Date Strings -->
+    <string name="last_7_days">Last 7 Days</string>
+    <string name="last_30_days">Last 30 Days</string>
+    <string name="this_week">This Week</string>
+    <string name="this_month">This Month</string>
+
+    <!-- Enhanced Progress Tracking -->
+    <string name="progress_overview">Progress Overview</string>
+    <string name="learning_path">Learning Path</string>
+    <string name="empathy_growth">Empathy Growth</string>
+    <string name="skill_development">Skill Development</string>
+
+    <!-- Activity Status -->
+    <string name="very_active">Very Active</string>
+    <string name="moderately_active">Moderately Active</string>
+    <string name="occasionally_active">Occasionally Active</string>
+    <string name="just_started">Just Started</string>
+
+    <!-- Quality Indicators -->
+    <string name="quality_excellent">Excellent Quality</string>
+    <string name="quality_very_good">Very Good Quality</string>
+    <string name="quality_average">Average Quality</string>
+    <string name="quality_needs_improvement">Needs Improvement</string>
+
+    <!-- Streak Encouragement -->
+    <string name="streak_motivation_continue">Keep your streak alive!</string>
+    <string name="streak_motivation_restart">Start a new streak today!</string>
+    <string name="streak_motivation_milestone">You\'re close to a milestone!</string>
+
+    <!-- Advanced Statistics -->
+    <string name="response_consistency">Response Consistency</string>
+    <string name="empathy_score">Empathy Score</string>
+    <string name="learning_velocity">Learning Velocity</string>
+    <string name="engagement_level">Engagement Level</string>
+
+    <!-- Tutorial and Onboarding -->
+    <string name="tutorial_completed">Tutorial Completed</string>
+    <string name="tutorial_pending">Tutorial Pending</string>
+    <string name="complete_tutorial">Complete Tutorial</string>
+
+    <!-- Enhanced Categories -->
+    <string name="scenario_categories">Scenario Categories</string>
+    <string name="category_progress">Category Progress</string>
+    <string name="most_practiced_category">Most Practiced Category</string>
+    <string name="least_practiced_category">Least Practiced Category</string>
+
+    <!-- Performance Metrics -->
+    <string name="response_speed">Response Speed</string>
+    <string name="thoughtfulness_score">Thoughtfulness Score</string>
+    <string name="improvement_trend">Improvement Trend</string>
+    <string name="consistency_score">Consistency Score</string>
+
+    <!-- Achievement Progress -->
+    <string name="achievements_unlocked">Achievements Unlocked</string>
+    <string name="next_achievement">Next Achievement</string>
+    <string name="achievement_progress">Achievement Progress</string>
+
+    <!-- Data Management -->
+    <string name="data_summary">Data Summary</string>
+    <string name="export_data">Export Data</string>
+    <string name="backup_progress">Backup Progress</string>
+    <string name="reset_warning">This will delete all your progress</string>
+
+    <!-- Feedback and Learning -->
+    <string name="learning_insights">Learning Insights</string>
+    <string name="areas_for_improvement">Areas for Improvement</string>
+    <string name="strengths_identified">Strengths Identified</string>
+    <string name="personalized_feedback">Personalized Feedback</string>
 </resources>

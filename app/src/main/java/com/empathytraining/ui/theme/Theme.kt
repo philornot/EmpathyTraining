@@ -2,6 +2,7 @@ package com.empathytraining.ui.theme
 
 import android.app.Activity
 import android.os.Build
+import android.view.ContextThemeWrapper
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
@@ -141,26 +142,36 @@ fun EmpathyTheme(
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
-            val window = (view.context as Activity).window
-
-            // Enable edge-to-edge display for all API levels
-            WindowCompat.setDecorFitsSystemWindows(window, false)
-
-            // Get the WindowInsetsController
-            val insetsController = WindowCompat.getInsetsController(window, view)
-
-            // Set the appearance of system bars based on theme
-            insetsController.isAppearanceLightStatusBars = !darkTheme
-            insetsController.isAppearanceLightNavigationBars = !darkTheme
-
-            // Set transparent system bars for edge-to-edge experience
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                window.setDecorFitsSystemWindows(false)
+            // Safely get Activity from context
+            val context = view.context
+            val activity = when (context) {
+                is Activity -> context
+                is ContextThemeWrapper -> context.baseContext as? Activity
+                else -> null
             }
 
-            // Make system bars transparent
-            window.statusBarColor = android.graphics.Color.TRANSPARENT
-            window.navigationBarColor = android.graphics.Color.TRANSPARENT
+            activity?.let { act ->
+                val window = act.window
+
+                // Enable edge-to-edge display for all API levels
+                WindowCompat.setDecorFitsSystemWindows(window, false)
+
+                // Get the WindowInsetsController
+                val insetsController = WindowCompat.getInsetsController(window, view)
+
+                // Set the appearance of system bars based on theme
+                insetsController.isAppearanceLightStatusBars = !darkTheme
+                insetsController.isAppearanceLightNavigationBars = !darkTheme
+
+                // Make system bars transparent
+                window.statusBarColor = android.graphics.Color.TRANSPARENT
+                window.navigationBarColor = android.graphics.Color.TRANSPARENT
+
+                // Additional edge-to-edge setup for Android R and above
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    window.setDecorFitsSystemWindows(false)
+                }
+            }
         }
     }
 

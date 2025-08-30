@@ -1,11 +1,14 @@
 package com.empathytraining.data.repository
 
+import android.content.Context
 import com.empathytraining.data.database.EmpathyDao
 import com.empathytraining.data.models.EmpathyScenario
 import com.empathytraining.data.models.UserProgress
 import com.empathytraining.data.models.UserResponse
+import com.empathytraining.utils.LocalizationUtils
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import timber.log.Timber
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -13,8 +16,8 @@ import javax.inject.Inject
 
 /**
  * Repository class that serves as a single source of truth for all empathy
- * training data Handles all database operations and business logic for
- * data access
+ * training data. Handles all database operations and business logic for
+ * data access with full internationalization support.
  *
  * This class abstracts the database layer from the UI and provides clean,
  * domain-specific methods for the app's use cases
@@ -36,9 +39,10 @@ class EmpathyRepository @Inject constructor(
      * Get today's challenge scenario for the user Returns null if user has
      * already completed max responses for today
      *
-     * @return EmpathyScenario for today's challenge or null
+     * @param context Context for accessing localized strings
+     * @return LocalizedScenario for today's challenge or null
      */
-    suspend fun getTodaysChallenge(): EmpathyScenario? {
+    suspend fun getTodaysChallenge(context: Context): LocalizedScenario? {
         Timber.d("Getting today's challenge scenario")
 
         val todayDate = LocalDate.now().toString()
@@ -58,15 +62,26 @@ class EmpathyRepository @Inject constructor(
         Timber.d("User's preferred difficulty: $preferredDifficulty")
 
         // Try to get scenario at preferred difficulty first
-        var scenario = empathyDao.getRandomUnusedScenarioForToday(todayDate)
+        val scenario = empathyDao.getRandomUnusedScenarioForToday(todayDate)
 
         if (scenario != null) {
             Timber.d("Found challenge scenario: ID ${scenario.id}, Category: ${scenario.category}")
+
+            // Localize the scenario
+            val (scenarioText, exampleResponse) = LocalizationUtils.getLocalizedScenario(
+                context, scenario
+            )
+
+            return LocalizedScenario(
+                scenario = scenario,
+                localizedText = scenarioText,
+                localizedExample = exampleResponse
+            )
         } else {
             Timber.w("No unused scenarios available for today - user may have completed all scenarios")
         }
 
-        return scenario
+        return null
     }
 
     /**
@@ -223,46 +238,85 @@ class EmpathyRepository @Inject constructor(
     // ==========================================
 
     /**
-     * Get all available scenarios (for browsing/practice)
+     * Get all available scenarios with localization (for browsing/practice)
      *
-     * @return Flow of all active scenarios
+     * @param context Context for accessing localized strings
+     * @return Flow of all active localized scenarios
      */
-    fun getAllScenarios(): Flow<List<EmpathyScenario>> {
-        Timber.d("Getting all scenarios")
-        return empathyDao.getAllActiveScenarios()
+    fun getAllLocalizedScenarios(context: Context): Flow<List<LocalizedScenario>> {
+        Timber.d("Getting all localized scenarios")
+        return empathyDao.getAllActiveScenarios().map { scenarios ->
+            scenarios.map { scenario ->
+                val (scenarioText, exampleResponse) = LocalizationUtils.getLocalizedScenario(
+                    context, scenario
+                )
+                LocalizedScenario(scenario, scenarioText, exampleResponse)
+            }
+        }
     }
 
     /**
-     * Get scenarios by category
+     * Get scenarios by category with localization
      *
+     * @param context Context for accessing localized strings
      * @param category Category to filter by
-     * @return Flow of scenarios in that category
+     * @return Flow of localized scenarios in that category
      */
-    fun getScenariosByCategory(category: String): Flow<List<EmpathyScenario>> {
-        Timber.d("Getting scenarios for category: $category")
-        return empathyDao.getScenariosByCategory(category)
+    fun getLocalizedScenariosByCategory(
+        context: Context,
+        category: String,
+    ): Flow<List<LocalizedScenario>> {
+        Timber.d("Getting localized scenarios for category: $category")
+        return empathyDao.getScenariosByCategory(category).map { scenarios ->
+            scenarios.map { scenario ->
+                val (scenarioText, exampleResponse) = LocalizationUtils.getLocalizedScenario(
+                    context, scenario
+                )
+                LocalizedScenario(scenario, scenarioText, exampleResponse)
+            }
+        }
     }
 
     /**
-     * Get scenarios by difficulty level
+     * Get scenarios by difficulty level with localization
      *
+     * @param context Context for accessing localized strings
      * @param difficultyLevel Difficulty level to filter by
-     * @return Flow of scenarios at that difficulty
+     * @return Flow of localized scenarios at that difficulty
      */
-    fun getScenariosByDifficulty(difficultyLevel: Int): Flow<List<EmpathyScenario>> {
-        Timber.d("Getting scenarios for difficulty: $difficultyLevel")
-        return empathyDao.getScenariosByDifficulty(difficultyLevel)
+    fun getLocalizedScenariosByDifficulty(
+        context: Context,
+        difficultyLevel: Int,
+    ): Flow<List<LocalizedScenario>> {
+        Timber.d("Getting localized scenarios for difficulty: $difficultyLevel")
+        return empathyDao.getScenariosByDifficulty(difficultyLevel).map { scenarios ->
+            scenarios.map { scenario ->
+                val (scenarioText, exampleResponse) = LocalizationUtils.getLocalizedScenario(
+                    context, scenario
+                )
+                LocalizedScenario(scenario, scenarioText, exampleResponse)
+            }
+        }
     }
 
     /**
-     * Get a specific scenario by ID
+     * Get a specific scenario by ID with localization
      *
+     * @param context Context for accessing localized strings
      * @param scenarioId ID of the scenario
-     * @return The scenario or null if not found
+     * @return The localized scenario or null if not found
      */
-    suspend fun getScenarioById(scenarioId: Long): EmpathyScenario? {
-        Timber.d("Getting scenario by ID: $scenarioId")
-        return empathyDao.getScenarioById(scenarioId)
+    suspend fun getLocalizedScenarioById(context: Context, scenarioId: Long): LocalizedScenario? {
+        Timber.d("Getting localized scenario by ID: $scenarioId")
+        val scenario = empathyDao.getScenarioById(scenarioId)
+        return if (scenario != null) {
+            val (scenarioText, exampleResponse) = LocalizationUtils.getLocalizedScenario(
+                context, scenario
+            )
+            LocalizedScenario(scenario, scenarioText, exampleResponse)
+        } else {
+            null
+        }
     }
 
     // ==========================================
@@ -311,6 +365,34 @@ class EmpathyRepository @Inject constructor(
         return empathyDao.getTodaysResponses(todayDate)
     }
 
+    /**
+     * Get user responses with localized scenario information
+     *
+     * @param context Context for accessing localized strings
+     * @return Flow of responses with localized scenario data
+     */
+    fun getUserResponsesWithScenarios(context: Context): Flow<List<UserResponseWithScenario>> {
+        Timber.d("Getting user responses with localized scenarios")
+        return empathyDao.getAllUserResponses().map { responses ->
+            responses.mapNotNull { response ->
+                val scenario = empathyDao.getScenarioById(response.scenarioId)
+                if (scenario != null) {
+                    val (scenarioText, exampleResponse) = LocalizationUtils.getLocalizedScenario(
+                        context, scenario
+                    )
+                    UserResponseWithScenario(
+                        response = response,
+                        scenario = scenario,
+                        localizedScenarioText = scenarioText,
+                        localizedExampleResponse = exampleResponse
+                    )
+                } else {
+                    null
+                }
+            }
+        }
+    }
+
     // ==========================================
     // ANALYTICS AND STATISTICS
     // ==========================================
@@ -321,8 +403,16 @@ class EmpathyRepository @Inject constructor(
      * @return Map containing various statistics
      */
     suspend fun getComprehensiveStats(): Map<String, Any> {
-        Timber.d("Getting comprehensive statistics")
-        return empathyDao.getComprehensiveStats()
+        return mapOf(
+            "totalResponses" to empathyDao.getTotalResponseCount(),
+            "activeDays" to empathyDao.getActiveDaysCount(),
+            "uniqueScenarios" to empathyDao.getUniqueScenarioCount(),
+            "averageResponseLength" to empathyDao.getAverageResponseLength(),
+            "averageSelfRating" to empathyDao.getAverageSelfRating(),
+            "examplesViewed" to empathyDao.getExamplesViewedCount(),
+            "activeScenarios" to empathyDao.getActiveScenarioCount(),
+            "ratedResponses" to empathyDao.getRatedResponseCount()
+        )
     }
 
     /**
@@ -337,6 +427,16 @@ class EmpathyRepository @Inject constructor(
 
         Timber.d("Streak info - Current: $currentStreak, Longest: $longestStreak")
         return Pair(currentStreak, longestStreak)
+    }
+
+    /**
+     * Validate that all scenario resources exist for current locale
+     *
+     * @param context Context for accessing string resources
+     * @return List of missing resource keys (empty if all exist)
+     */
+    fun validateScenarioResources(context: Context): List<String> {
+        return LocalizationUtils.validateScenarioResources(context)
     }
 
     // ==========================================
@@ -416,4 +516,31 @@ class EmpathyRepository @Inject constructor(
         empathyDao.resetAllUserData()
         empathyDao.initializeUserProgress()
     }
+
+    // ==========================================
+    // DATA CLASSES FOR LOCALIZED CONTENT
+    // ==========================================
+
+    /** Data class that combines a scenario with its localized content */
+    data class LocalizedScenario(
+        val scenario: EmpathyScenario,
+        val localizedText: String,
+        val localizedExample: String,
+    ) {
+        fun getPreview(maxLength: Int = 50): String {
+            return if (localizedText.length > maxLength) {
+                localizedText.take(maxLength - 3) + "..."
+            } else {
+                localizedText
+            }
+        }
+    }
+
+    /** Data class that combines a user response with its localized scenario */
+    data class UserResponseWithScenario(
+        val response: UserResponse,
+        val scenario: EmpathyScenario,
+        val localizedScenarioText: String,
+        val localizedExampleResponse: String,
+    )
 }

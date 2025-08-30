@@ -9,8 +9,8 @@ import androidx.room.PrimaryKey
  * contains a situation that requires an empathetic response along with an
  * example of a good empathetic response
  *
- * This entity will be stored in Room database and can be prepopulated with
- * default scenarios when the database is first created
+ * This entity will be stored in Room database and scenarios are loaded
+ * from string resources to support internationalization
  */
 @Entity(tableName = "empathy_scenarios")
 data class EmpathyScenario(
@@ -18,16 +18,16 @@ data class EmpathyScenario(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "scenario_id") val id: Long = 0,
 
     /**
-     * The actual scenario text that user will respond to Examples: "I'm so
-     * tired of this job", "Nobody understands me"
+     * Resource key for the scenario text that user will respond to Maps to
+     * string resources like "scenario_work_exhausted"
      */
-    @ColumnInfo(name = "scenario_text") val scenarioText: String,
+    @ColumnInfo(name = "scenario_key") val scenarioKey: String,
 
     /**
-     * Example of a good empathetic response to this scenario This will be
-     * shown to the user after they provide their response
+     * Resource key for the example empathetic response Maps to string
+     * resources like "scenario_work_exhausted_example"
      */
-    @ColumnInfo(name = "example_response") val exampleResponse: String,
+    @ColumnInfo(name = "example_key") val exampleKey: String,
 
     /**
      * Category of the scenario for potential future filtering/organization
@@ -53,21 +53,6 @@ data class EmpathyScenario(
      */
     @ColumnInfo(name = "usage_count") val usageCount: Int = 0,
 ) {
-
-    /**
-     * Helper function to get a short preview of the scenario text Useful for
-     * displaying in lists where space is limited
-     *
-     * @param maxLength Maximum number of characters to include
-     * @return Truncated scenario text with ellipsis if necessary
-     */
-    fun getPreview(maxLength: Int = 50): String {
-        return if (scenarioText.length > maxLength) {
-            scenarioText.take(maxLength - 3) + "..."
-        } else {
-            scenarioText
-        }
-    }
 
     /**
      * Helper function to determine if this is a beginner-friendly scenario
@@ -111,15 +96,46 @@ data class EmpathyScenario(
         )
 
         /**
-         * Maximum recommended length for scenario text Ensures scenarios remain
-         * concise and focused
+         * Scenario keys mapped to their categories and difficulty levels This
+         * defines all available scenarios in the app
          */
-        const val MAX_SCENARIO_LENGTH = 200
+        val SCENARIO_DEFINITIONS = listOf(
+            ScenarioDefinition("scenario_work_exhausted", "work", 2),
+            ScenarioDefinition("scenario_work_unappreciated", "work", 2),
+            ScenarioDefinition("scenario_work_promotion", "work", 3),
+            ScenarioDefinition("scenario_work_job_loss", "work", 4),
+            ScenarioDefinition("scenario_relationships_fighting", "relationships", 4),
+            ScenarioDefinition("scenario_relationships_not_listening", "relationships", 3),
+            ScenarioDefinition("scenario_relationships_breakup", "relationships", 4),
+            ScenarioDefinition("scenario_family_independence", "family", 3),
+            ScenarioDefinition("scenario_family_teenager", "family", 4),
+            ScenarioDefinition("scenario_family_caregiving", "family", 4),
+            ScenarioDefinition("scenario_personal_not_good_enough", "personal", 3),
+            ScenarioDefinition("scenario_personal_stuck_pattern", "personal", 3),
+            ScenarioDefinition("scenario_personal_directionless", "personal", 2),
+            ScenarioDefinition("scenario_personal_pet_loss", "personal", 3),
+            ScenarioDefinition("scenario_health_chronic_pain", "health", 4),
+            ScenarioDefinition("scenario_health_anxiety", "health", 3),
+            ScenarioDefinition("scenario_health_depression", "health", 5),
+            ScenarioDefinition("scenario_friendship_betrayal", "friendship", 3),
+            ScenarioDefinition("scenario_friendship_one_sided", "friendship", 3),
+            ScenarioDefinition("scenario_friendship_excluded", "friendship", 3),
+            ScenarioDefinition("scenario_education_failing", "education", 2),
+            ScenarioDefinition("scenario_education_rejection", "education", 3),
+            ScenarioDefinition("scenario_general_everything_wrong", "general", 3),
+            ScenarioDefinition("scenario_general_misunderstood", "general", 2),
+            ScenarioDefinition("scenario_general_uncertain_future", "general", 2),
+            ScenarioDefinition("scenario_general_disappointing", "general", 3)
+        )
+    }
 
-        /**
-         * Maximum recommended length for example response Keeps example responses
-         * concise and actionable
-         */
-        const val MAX_EXAMPLE_RESPONSE_LENGTH = 300
+    /** Data class to define scenario metadata */
+    data class ScenarioDefinition(
+        val scenarioKey: String,
+        val category: String,
+        val difficultyLevel: Int,
+    ) {
+        val exampleKey: String
+            get() = "${scenarioKey}_example"
     }
 }

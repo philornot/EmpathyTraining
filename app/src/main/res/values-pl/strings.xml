@@ -252,4 +252,110 @@
     <string name="difficulty_hard">Trudny</string>
     <string name="difficulty_very_hard">Bardzo trudny</string>
     <string name="difficulty_unknown">Nieznany poziom trudności</string>
+
+    <!--  History Screen Enhancements -->
+    <string name="recent_responses">Ostatnie odpowiedzi</string>
+    <string name="all_responses">Wszystkie odpowiedzi</string>
+    <string name="responses_for_date">Odpowiedzi z dnia %s</string>
+    <string name="no_responses_for_date">Brak odpowiedzi dla tej daty</string>
+    <string name="comprehensive_statistics">Szczegółowe statystyki</string>
+    <string name="unique_scenarios">Unikalne scenariusze</string>
+    <string name="and_more_responses">…i jeszcze %d odpowiedzi</string>
+
+    <!-- Progress Screen Enhancements -->
+    <string name="no_progress_yet">Brak postępów</string>
+    <string name="today_activity">Dzisiejsza aktywność</string>
+    <string name="completed_today_count">Dziś ukończono %d odpowiedzi</string>
+    <string name="not_completed_today">Nie ukończono jeszcze dzisiejszego wyzwania</string>
+    <string name="todays_response_count">Udzieliłeś dziś %d odpowiedzi</string>
+    <string name="recent_activity">Ostatnia aktywność</string>
+    <string name="active_scenarios_info">%d dostępnych scenariuszy do ćwiczeń</string>
+    <string name="active_scenarios_available">Dostępne scenariusze</string>
+    <string name="rated_responses">Ocenione odpowiedzi</string>
+
+    <!--  Difficulty Settings -->
+    <string name="difficulty_settings">Ustawienia trudności</string>
+    <string name="current_difficulty_level">Obecny poziom: %s</string>
+    <string name="select_difficulty_level">Wybierz poziom trudności</string>
+    <string name="change">Zmień</string>
+    <string name="close">Zamknij</string>
+
+    <!-- Resource Validation -->
+    <string name="resource_validation_warning">Ostrzeżenie dotyczące zasobów</string>
+    <string name="missing_resources_count">Wykryto brak %d zasobów scenariuszy</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_warning">Ostrzeżenie</string>
+    <string name="cd_today">Dzisiaj</string>
+    <string name="cd_settings">Ustawienia</string>
+
+    <!-- Additional Time/Date Strings -->
+    <string name="last_7_days">Ostatnie 7 dni</string>
+    <string name="last_30_days">Ostatnie 30 dni</string>
+    <string name="this_week">Ten tydzień</string>
+    <string name="this_month">Ten miesiąc</string>
+
+    <!-- Enhanced Progress Tracking -->
+    <string name="progress_overview">Przegląd postępów</string>
+    <string name="learning_path">Ścieżka nauki</string>
+    <string name="empathy_growth">Rozwój empatii</string>
+    <string name="skill_development">Rozwój umiejętności</string>
+
+    <!-- Activity Status -->
+    <string name="very_active">Bardzo aktywny</string>
+    <string name="moderately_active">Umiarkowanie aktywny</string>
+    <string name="occasionally_active">Czasami aktywny</string>
+    <string name="just_started">Dopiero zaczęto</string>
+
+    <!-- Quality Indicators -->
+    <string name="quality_excellent">Doskonała jakość</string>
+    <string name="quality_very_good">Bardzo dobra jakość</string>
+    <string name="quality_average">Średnia jakość</string>
+    <string name="quality_needs_improvement">Wymaga poprawy</string>
+
+    <!--  Streak Encouragement -->
+    <string name="streak_motivation_continue">Utrzymaj swoją passę!</string>
+    <string name="streak_motivation_restart">Rozpocznij nową passę już dziś!</string>
+    <string name="streak_motivation_milestone">Jesteś blisko kamienia milowego!</string>
+
+    <!-- Advanced Statistics -->
+    <string name="response_consistency">Spójność odpowiedzi</string>
+    <string name="empathy_score">Wskaźnik empatii</string>
+    <string name="learning_velocity">Tempo nauki</string>
+    <string name="engagement_level">Poziom zaangażowania</string>
+
+    <!-- Tutorial and Onboarding -->
+    <string name="tutorial_completed">Samouczek ukończony</string>
+    <string name="tutorial_pending">Samouczek w toku</string>
+    <string name="complete_tutorial">Ukończ samouczek</string>
+
+    <!-- Enhanced Categories -->
+    <string name="scenario_categories">Kategorie scenariuszy</string>
+    <string name="category_progress">Postęp w kategoriach</string>
+    <string name="most_practiced_category">Najczęściej ćwiczona kategoria</string>
+    <string name="least_practiced_category">Najrzadziej ćwiczona kategoria</string>
+
+    <!-- Performance Metrics -->
+    <string name="response_speed">Szybkość odpowiedzi</string>
+    <string name="thoughtfulness_score">Wskaźnik przemyślenia</string>
+    <string name="improvement_trend">Trend poprawy</string>
+    <string name="consistency_score">Wskaźnik spójności</string>
+
+    <!-- Achievement Progress -->
+    <string name="achievements_unlocked">Odblokowane osiągnięcia</string>
+    <string name="next_achievement">Następne osiągnięcie</string>
+    <string name="achievement_progress">Postęp osiągnięć</string>
+
+    <!-- Data Management -->
+    <string name="data_summary">Podsumowanie danych</string>
+    <string name="export_data">Eksportuj dane</string>
+    <string name="backup_progress">Kopia zapasowa postępów</string>
+    <string name="reset_warning">To usunie wszystkie twoje postępy</string>
+
+    <!-- Feedback and Learning -->
+    <string name="learning_insights">Wnioski z nauki</string>
+    <string name="areas_for_improvement">Obszary do poprawy</string>
+    <string name="strengths_identified">Zidentyfikowane mocne strony</string>
+    <string name="personalized_feedback">Spersonalizowana informacja zwrotna</string>
+
 </resources>

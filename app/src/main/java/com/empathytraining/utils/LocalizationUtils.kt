@@ -2,6 +2,7 @@ package com.empathytraining.utils
 
 import android.content.Context
 import com.empathytraining.R
+import com.empathytraining.data.models.EmpathyScenario
 
 /**
  * Utility class for handling localized strings and dynamic content that
@@ -12,6 +13,86 @@ import com.empathytraining.R
  * support throughout the app.
  */
 object LocalizationUtils {
+
+    /**
+     * Get localized scenario text from resource key
+     *
+     * @param context Android context for accessing string resources
+     * @param scenarioKey Resource key for the scenario text
+     * @return Localized scenario text or fallback if resource not found
+     */
+    fun getScenarioText(context: Context, scenarioKey: String): String {
+        return try {
+            val resourceId = context.resources.getIdentifier(
+                scenarioKey, "string", context.packageName
+            )
+            if (resourceId != 0) {
+                context.getString(resourceId)
+            } else {
+                // Fallback for missing resources
+                "Scenario not available in current language"
+            }
+        } catch (e: Exception) {
+            "Scenario not available"
+        }
+    }
+
+    /**
+     * Get localized example response from resource key
+     *
+     * @param context Android context for accessing string resources
+     * @param exampleKey Resource key for the example response
+     * @return Localized example response or fallback if resource not found
+     */
+    fun getExampleResponse(context: Context, exampleKey: String): String {
+        return try {
+            val resourceId = context.resources.getIdentifier(
+                exampleKey, "string", context.packageName
+            )
+            if (resourceId != 0) {
+                context.getString(resourceId)
+            } else {
+                // Fallback for missing resources
+                "Example not available in current language"
+            }
+        } catch (e: Exception) {
+            "Example not available"
+        }
+    }
+
+    /**
+     * Get localized scenario with both text and example
+     *
+     * @param context Android context for accessing string resources
+     * @param scenario EmpathyScenario with resource keys
+     * @return Pair of (scenarioText, exampleResponse)
+     */
+    fun getLocalizedScenario(context: Context, scenario: EmpathyScenario): Pair<String, String> {
+        val scenarioText = getScenarioText(context, scenario.scenarioKey)
+        val exampleResponse = getExampleResponse(context, scenario.exampleKey)
+        return Pair(scenarioText, exampleResponse)
+    }
+
+    /**
+     * Get short preview of localized scenario text
+     *
+     * @param context Android context for accessing string resources
+     * @param scenario EmpathyScenario with resource keys
+     * @param maxLength Maximum number of characters to include
+     * @return Truncated scenario text with ellipsis if necessary
+     */
+    fun getScenarioPreview(
+        context: Context,
+        scenario: EmpathyScenario,
+        maxLength: Int = 50,
+    ): String {
+        val fullText = getScenarioText(context, scenario.scenarioKey)
+        return if (fullText.length > maxLength) {
+            fullText.take(maxLength - 3) + "..."
+        } else {
+            fullText
+        }
+    }
 
     /**
      * Get localized level description based on user level
@@ -198,9 +279,7 @@ object LocalizationUtils {
                     } else {
                         // Fallback to days if less than a week and not 0-1 days (highly unlikely path)
                         resources.getQuantityString(
-                            R.plurals.days_ago,
-                            daysAgo.toInt(),
-                            daysAgo.toInt()
+                            R.plurals.days_ago, daysAgo.toInt(), daysAgo.toInt()
                         )
                     }
                 } else run {
@@ -277,5 +356,35 @@ object LocalizationUtils {
                 word.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
             }
         }
+    }
+
+    /**
+     * Validate that all scenario resource keys exist for current locale
+     *
+     * @param context Android context for accessing string resources
+     * @return List of missing resource keys (empty if all exist)
+     */
+    fun validateScenarioResources(context: Context): List<String> {
+        val missingKeys = mutableListOf<String>()
+
+        EmpathyScenario.SCENARIO_DEFINITIONS.forEach { definition ->
+            // Check scenario text resource
+            val scenarioResourceId = context.resources.getIdentifier(
+                definition.scenarioKey, "string", context.packageName
+            )
+            if (scenarioResourceId == 0) {
+                missingKeys.add(definition.scenarioKey)
+            }
+
+            // Check example response resource
+            val exampleResourceId = context.resources.getIdentifier(
+                definition.exampleKey, "string", context.packageName
+            )
+            if (exampleResourceId == 0) {
+                missingKeys.add(definition.exampleKey)
+            }
+        }
+
+        return missingKeys
     }
 }

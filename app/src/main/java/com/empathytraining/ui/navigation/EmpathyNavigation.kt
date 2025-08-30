@@ -66,7 +66,8 @@ fun EmpathyNavigation(
 
             composable(NavigationItem.History.route) {
                 HistoryScreen(
-                    repository = repository, onNavigateBack = { navController.popBackStack() })
+                    repository = repository
+                )
             }
 
             composable(NavigationItem.Progress.route) {

@@ -3,7 +3,6 @@ package com.empathytraining
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
-import com.empathytraining.BuildConfig
 
 /**
  * Application class for the Empathy Training app This class is required

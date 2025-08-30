@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Work Category Scenarios -->
+    <string name="scenario_work_exhausted">Jestem tak zmęczony tą pracą. Pracuję po 10 godzin dziennie i ledwo mam czas na cokolwiek innego.</string>
+    <string name="scenario_work_exhausted_example">To brzmi niesamowicie wyczerpująco. Praca przez tak długie godziny musi naprawdę mocno na Ciebie wpływać. Czy mogłeś z kimś porozmawiać o znalezieniu lepszej równowagi między pracą a życiem prywatnym?</string>
+
+    <string name="scenario_work_unappreciated">Mój szef nigdy nie docenia niczego, co robię. Wkładam tyle wysiłku, ale czuję się niewidzialny.</string>
+    <string name="scenario_work_unappreciated_example">To musi być bardzo frustrujące ciężko pracować i nie czuć, że Twoje starania są doceniane. Czucie się niewidzialnym w pracy może być naprawdę zniechęcające. Twój wkład ma znaczenie, nawet jeśli teraz nie jest uznawany.</string>
+
+    <string name="scenario_work_promotion">Znów pominięto mnie przy awansie. Nie rozumiem, co robię źle.</string>
+    <string name="scenario_work_promotion_example">To musi być takie rozczarowanie, zwłaszcza gdy nad tym pracowałeś. Nie dostanie awansu, na który zasługujesz, może być naprawdę przygnębiające. Czy udało Ci się uzyskać jakąś informację zwrotną o tym, co mogłoby pomóc Ci w przyszłych możliwościach?</string>
+
+    <string name="scenario_work_job_loss">Straciłem pracę i nie wiem, jak będę płacić rachunki.</string>
+    <string name="scenario_work_job_loss_example">Utrata pracy to nie tylko utrata dochodu - wpływa na Twoje bezpieczeństwo, tożsamość i spokój ducha. Stres finansowy musi być teraz przytłaczający. To naprawdę trudna sytuacja i to normalne, że czujesz strach i niepewność co do tego, co będzie dalej.</string>
+
+    <!-- Relationships Category Scenarios -->
+    <string name="scenario_relationships_fighting">Z moim partnerem wciąż kłócimy się o te same rzeczy w kółko. Nic nie zostaje rozwiązane.</string>
+    <string name="scenario_relationships_fighting_example">Powtarzanie tych samych kłótni może być tak wyczerpujące i frustrujące dla was obojga. Brzmi jakbyście utknęli w schemacie, który nie działa. Czasami rozmowa z doradcą może pomóc przerwać te cykle i znaleźć nowe sposoby komunikacji.</string>
+
+    <string name="scenario_relationships_not_listening">Czuję, że mój partner już mnie naprawdę nie słucha. Oddalamy się od siebie.</string>
+    <string name="scenario_relationships_not_listening_example">Czucie się niesłuchanym przez kogoś, kogo kochasz, może być naprawdę samotne i bolesne. Trudno jest, gdy wyczuwasz tę rosnącą odległość. Czy mogłeś podzielić się ze swoim partnerem tym, jak się czujesz w związku z komunikacją między wami?</string>
+
+    <string name="scenario_relationships_breakup">Przechodzę przez rozstanie i czuję, że mój świat się rozpada.</string>
+    <string name="scenario_relationships_breakup_example">Rozstania mogą wydawać się absolutnie druzgocące, zwłaszcza gdy ta osoba była tak ważną częścią Twojego życia. To zrozumiałe, że teraz wszystko wydaje się przytłaczające. Te uczucia są tak zasadne, a gojenie wymaga czasu. Nie musisz przez to przechodzić sam.</string>
+
+    <!-- Family Category Scenarios -->
+    <string name="scenario_family_independence">Moi rodzice wciąż traktują mnie jak dziecko, mimo że mam 25 lat. Kwestionują każdą moją decyzję.</string>
+    <string name="scenario_family_independence_example">To musi być tak frustrujące, gdy próbujesz ustanowić swoją niezależność jako dorosły. Może być trudno, gdy rodzice mają problem z dostosowaniem się do zmieniającej się relacji w miarę Twojego dorastania. Twoje uczucia dotyczące chęci większego szacunku dla Twojej autonomii są całkowicie zrozumiałe.</string>
+
+    <string name="scenario_family_teenager">Moja nastoletnia córka już ze mną nie rozmawia. Czuję, że ją tracę.</string>
+    <string name="scenario_family_teenager_example">To musi być tak bolesne jako rodzic. Lata nastoletnie mogą tworzyć taki dystans i naturalne jest martwienie się o Twoją więź z nią. Twoja miłość do niej jest wyraźnie widoczna, a ten fundament ma znaczenie nawet gdy komunikacja jest trudna.</string>
+
+    <string name="scenario_family_caregiving">Jestem jedyną osobą, która opiekuje się moimi starzejącymi się rodzicami. Moje rodzeństwo nigdy nie pomaga.</string>
+    <string name="scenario_family_caregiving_example">Dźwiganie tej odpowiedzialności głównie na swoich barkach musi być niesamowicie przytłaczające i wyczerpujące. To zrozumiałe, że czujesz urazę, gdy opieka nie jest dzielona równo. Robisz coś naprawdę ważnego i trudnego, i to w porządku czuć frustrację z powodu braku wsparcia.</string>
+
+    <!-- Personal Category Scenarios -->
+    <string name="scenario_personal_not_good_enough">Czuję, że nie jestem w niczym wystarczająco dobry. Wszyscy inni wydają się mieć to poukładane.</string>
+    <string name="scenario_personal_not_good_enough_example">Te uczucia niedorastania do standardów mogą być tak ciężkie do zniesienia. Media społecznościowe i porównywanie się z innymi mogą sprawiać, że wszyscy inni wydają się mieć życie poukładane, ale to rzadko jest prawdą. Masz unikalne mocne strony i wartość, nawet gdy trudno je zobaczyć.</string>
+
+    <string name="scenario_personal_stuck_pattern">Ciągle popełniam te same błędy w kółko. Czuję się uwięziony w schemacie, którego nie mogę przerwać.</string>
+    <string name="scenario_personal_stuck_pattern_example">Przełamywanie schematów może wydawać się niemożliwe, zwłaszcza gdy jesteś ich świadomy, ale nadal się w nich powtarzasz. To właściwie znak rozwoju, że rozpoznajesz ten schemat. Zmiana jest trudna i wymaga czasu - bądź cierpliwy dla siebie, gdy nad tym pracujesz.</string>
+
+    <string name="scenario_personal_directionless">Nie wiem, co chcę robić ze swoim życiem. Czuję się zagubiony i pozbawiony kierunku.</string>
+    <string name="scenario_personal_directionless_example">Czucie niepewności co do swojej ścieżki może być naprawdę niepokojące, zwłaszcza gdy wydaje się, że powinieneś mieć odpowiedzi. To w porządku nie mieć wszystkiego poukładanego - wielu ludzi czuje się tak samo, nawet jeśli tego nie pokazują. Poświęcenie czasu na odkrywanie tego, co jest dla Ciebie ważne, jest wartościowe, a nie stracone.</string>
+
+    <string name="scenario_personal_pet_loss">Mój pupil zmarł i wszyscy mówią \"to było tylko zwierzę\", ale jestem załamany.</string>
+    <string name="scenario_personal_pet_loss_example">Utrata ukochanego pupila to prawdziwy i głęboki żal. Pupile stają się członkami rodziny, a ich utrata pozostawia prawdziwą pustkę w sercu. Nie pozwól nikomu umniejszać Twojego bólu - Twój żal jest uzasadniony, a życie Twojego pupila miało głębokie znaczenie.</string>
+
+    <!-- Health Category Scenarios -->
+    <string name="scenario_health_chronic_pain">Od miesięcy zmagam się z chronicznym bólem, a lekarze nie mogą ustalić, co jest nie tak.</string>
+    <string name="scenario_health_chronic_pain_example">Życie z chronicznym bólem bez odpowiedzi musi być niesamowicie frustrujące i przerażające. Nie wiedzieć, co go powoduje, dodaje kolejną warstwę stresu do i tak już trudnej sytuacji. Twój ból jest prawdziwy i uzasadniony, niezależnie od tego, czy lekarze już znaleźli przyczynę.</string>
+
+    <string name="scenario_health_anxiety">Ostatnio czuję się naprawdę niespokojny i to wpływa na wszystko, co robię.</string>
+    <string name="scenario_health_anxiety_example">Niepokój może być tak przytłaczający, gdy zaczyna wpływać na wszystkie obszary Twojego życia. Wymaga odwagi, aby przyznać się do tego, przez co przechodzisz. Istnieją sposoby radzenia sobie z niepokojem, a zwrócenie się o wsparcie - czy to do przyjaciół, rodziny, czy specjalistów - może naprawdę pomóc.</string>
+
+    <string name="scenario_health_depression">Zmagam się z depresją i ledwo mogę wstać z łóżka przez większość dni.</string>
+    <string name="scenario_health_depression_example">Depresja może sprawiać, że nawet najprostsze zadania wydają się przytłaczające i wyczerpujące. Samo przejście przez każdy dzień wymaga niesamowitej siły, nawet gdy tak się nie czuje. Zasługujesz na wsparcie i opiekę - rozważ zwrócenie się do specjalisty od zdrowia psychicznego, jeśli jeszcze tego nie zrobiłeś.</string>
+
+    <!-- Friendship Category Scenarios -->
+    <string name="scenario_friendship_betrayal">Dowiedziałem się, że mój najlepszy przyjaciel plotkuje o mnie za moimi plecami.</string>
+    <string name="scenario_friendship_betrayal_example">Odkrycie takiej zdrady od kogoś, komu tak głęboko ufałeś, musi być niesamowicie bolesne i szokujące. To naturalne czuć ból, złość i zamęt. Poświęć czas na przetworzenie tych uczuć, zanim zdecydujesz, jak poradzić sobie z tą sytuacją z przyjacielem.</string>
+
+    <string name="scenario_friendship_one_sided">Czuję, że nie mam żadnych prawdziwych przyjaciół. Zawsze to ja odezwę się pierwszy.</string>
+    <string name="scenario_friendship_one_sided_example">To może być tak samotne i jednostronne, gdy zawsze to Ty inicjujesz kontakt. Wyczerpujące jest czucie, że wkładasz cały wysiłek w przyjaźnie. Twoje pragnienie bardziej zrównoważonych, wzajemnych przyjaźni jest całkowicie rozsądne i zasługujesz na więzi, gdzie wysiłek idzie w obie strony.</string>
+
+    <string name="scenario_friendship_excluded">Moja grupa znajomych wykluczyła mnie z planów, a dowiedziałem się o tym z mediów społecznościowych.</string>
+    <string name="scenario_friendship_excluded_example">Dowiedzenie się, że zostałeś pominięty przez media społecznościowe, musiało być takim bolesnym szokiem. Bycie wykluczonym przez ludzi, których uważasz za przyjaciół, jest bolesne i zagadkowe. Twoje uczucia bólu i rozczarowania są całkowicie uzasadnione.</string>
+
+    <!-- Education Category Scenarios -->
+    <string name="scenario_education_failing">Oblewan egzaminy i nie wiem, jak nadrobić zaległości. Czuję się przytłoczony.</string>
+    <string name="scenario_education_failing_example">Czucie się w tyle akademicko może tworzyć taki przytłaczający stres i niepokój. To zrozumiałe czuć się zgubionym, gdy praca wydaje się nie do pokonania. Pamiętaj, że proszenie o pomoc - od nauczycieli, korepetytorów czy doradców - to znak siły, nie słabości.</string>
+
+    <string name="scenario_education_rejection">Zostałem odrzucony z wymarzonej uczelni. Nie wiem, co teraz robić.</string>
+    <string name="scenario_education_rejection_example">Odrzucenie przez uczelnię, zwłaszcza wymarzoną, może wydawać się takim druzgocącym rozczarowaniem. To w porządku opłakiwać tę stratę i czuć się z tego powodu zdenerwowanym. To nie definiuje Twojej wartości ani przyszłości - istnieje wiele ścieżek do sukcesu i spełnienia.</string>
+
+    <!-- General Category Scenarios -->
+    <string name="scenario_general_everything_wrong">Wszystko w moim życiu wydaje się iść źle naraz.</string>
+    <string name="scenario_general_everything_wrong_example">Gdy wiele trudnych rzeczy dzieje się jednocześnie, może się to wydawać absolutnie przytłaczające i niesprawiedliwe. To zrozumiałe, że czujesz, jakbyś nie mógł złapać oddechu. Branie rzeczy dzień po dniu, a nawet chwila po chwili, może pomóc, gdy wszystko wydaje się za dużo.</string>
+
+    <string name="scenario_general_misunderstood">Czuję, że nikt naprawdę mnie nie rozumie ani tego, przez co przechodzę.</string>
+    <string name="scenario_general_misunderstood_example">Czucie się niezrozumianym może być tak izolujące i samotne. To trudne, gdy czujesz, że przechodzisz przez coś, z czym inni nie mogą się powiązać ani tego pojąć. Twoje doświadczenia i uczucia są ważne, nawet jeśli inni nie przeszli w Twoich butach.</string>
+
+    <string name="scenario_general_uncertain_future">Boję się przyszłości i całej niepewności, która przed nami.</string>
+    <string name="scenario_general_uncertain_future_example">Niepewność co do przyszłości może tworzyć taki głęboki niepokój i strach. Nie wiedzieć, co nadchodzi, to jedna z najtrudniejszych rzeczy, z jakimi radzą sobie ludzie. Twoje obawy są zrozumiałe - stawienie czoła niepewnej przyszłości wymaga odwagi, a jesteś odważniejszy, niż możesz sobie uświadomić.</string>
+
+    <string name="scenario_general_disappointing">Czuję, że zawsze rozczarowuję ludzi, na których mi zależy.</string>
+    <string name="scenario_general_disappointing_example">Dźwiganie ciężaru uczucia, że zawodzisz innych, może być wyczerpujące i bolesne. Ta presja spełniania oczekiwań wszystkich jest tak ciężka. Pamiętaj, że jesteś człowiekiem, a ludzie, którym naprawdę na Tobie zależy, rozumieją, że nikt nie jest doskonały.</string>
+</resources>
