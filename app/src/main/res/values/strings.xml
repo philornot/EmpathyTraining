@@ -11,10 +11,61 @@
     <string name="start">Start</string>
     <string name="continue_action">Continue</string>
 
+    <!-- Navigation -->
+    <string name="nav_today">Today</string>
+    <string name="nav_history">History</string>
+    <string name="nav_progress">Progress</string>
+
+    <!-- Daily Challenge Screen -->
+    <string name="daily_empathy_challenge">Daily Empathy Challenge</string>
+    <string name="day_streak">day streak</string>
+    <string name="responses">responses</string>
+    <string name="challenge_loading">Loading today\'s challenge…</string>
+    <string name="challenge_completed">Great job! You\'ve completed today\'s challenge.</string>
+    <string name="keep_practicing">Keep practicing empathy!</string>
+    <string name="view_responses">View Your Responses</string>
+    <string name="no_more_challenges">No more challenges today</string>
+    <string name="all_scenarios_completed">You\'ve completed all available scenarios for today. Great work!</string>
+    <string name="review_progress">Review Your Progress</string>
+    <string name="someone_says">Someone says:</string>
+    <string name="how_would_you_respond">How would you respond with empathy?</string>
+    <string name="your_response">Your empathetic response</string>
+    <string name="response_placeholder">Type your response here…</string>
+    <string name="submit_response">Submit Response</string>
+    <string name="see_example">See Example Response</string>
+    <string name="example_response">Example Response:</string>
+
+    <!-- Legacy strings to maintain compatibility -->
+    <string name="challenge_completed_title">Great job! You\'ve completed today\'s challenge.</string>
+    <string name="view_your_responses">View Your Responses</string>
+    <string name="no_more_challenges_today">No more challenges today</string>
+    <string name="completed_all_scenarios">You\'ve completed all available scenarios for today. Great work on your empathy practice!</string>
+    <string name="review_your_progress">Review Your Progress</string>
+    <string name="your_empathetic_response">Your empathetic response</string>
+    <string name="see_example_response">See Example Response</string>
+    <string name="example_response_label">Example Response:</string>
+
+    <!-- History Screen -->
+    <string name="response_history">Your Response History</string>
+    <string name="no_responses_yet">No responses yet</string>
+    <string name="complete_first_challenge">Complete your first daily challenge to see your empathy responses here.</string>
+    <string name="scenario">Scenario:</string>
+    <string name="rating_format">%d/5</string>
+    <string name="character_count">%d characters</string>
+    <string name="viewed_example">✓ Viewed example response</string>
+
+    <!-- Legacy history strings -->
+    <string name="history_title">Your Response History</string>
+    <string name="no_responses_description">Complete your first daily challenge to see your empathy responses here.</string>
+    <string name="scenario_label">Scenario:</string>
+    <string name="your_response_label">Your Response:</string>
+    <string name="characters_count">%d characters</string>
+
     <!-- Progress Screen -->
     <string name="progress_title">Your Progress</string>
     <string name="progress_loading">Loading your progress…</string>
     <string name="level_format">Level %d</string>
+    <string name="cd_streak">Streak</string>
     <string name="current_streak">Current Streak</string>
     <string name="statistics_overview">Statistics Overview</string>
     <string name="total_responses">Total Responses</string>
@@ -22,58 +73,53 @@
     <string name="scenarios_completed">Scenarios Completed</string>
     <string name="activity_rate">Activity Rate</string>
     <string name="consistency">Consistency</string>
+    <string name="cd_quality">Quality</string>
     <string name="response_quality">Response Quality</string>
-    <string name="avg_characters">avg. characters</string>
-    <string name="avg_rating">avg. rating</string>
-    <string name="examples_viewed">examples viewed</string>
+    <string name="avg_characters">Avg Characters</string>
+    <string name="avg_rating">Avg Rating</string>
+    <string name="examples_viewed">Examples Viewed</string>
+    <string name="cd_milestone">Milestone</string>
     <string name="next_milestone">Next Milestone</string>
-    <string name="milestone_encouragement">Keep up the great work! Every response makes you more empathetic.</string>
+    <string name="milestone_encouragement">Keep going to reach your next goal!</string>
     <string name="view_todays_challenge">View Today\'s Challenge</string>
     <string name="start_todays_challenge">Start Today\'s Challenge</string>
 
-    <!-- Streak Days -->
+    <!-- English Plurals -->
     <plurals name="days_current">
-        <item quantity="one">day current</item>
-        <item quantity="other">days current</item>
+        <item quantity="one">%d day current</item>
+        <item quantity="other">%d days current</item>
     </plurals>
+
     <plurals name="days_best">
-        <item quantity="one">day best</item>
-        <item quantity="other">days best</item>
+        <item quantity="one">%d day best</item>
+        <item quantity="other">%d days best</item>
     </plurals>
+
     <plurals name="day_streak">
         <item quantity="one">day streak</item>
         <item quantity="other">day streak</item>
     </plurals>
+
     <plurals name="responses_count">
         <item quantity="one">response</item>
         <item quantity="other">responses</item>
     </plurals>
 
-    <!-- History Screen -->
-    <string name="history_title">Your Response History</string>
-    <string name="no_responses_yet">No responses yet</string>
-    <string name="no_responses_description">Complete your first daily challenge to see your empathy responses here.</string>
-    <string name="scenario_label">Scenario:</string>
-    <string name="your_response_label">Your Response:</string>
-    <string name="characters_count">%d characters</string>
-    <string name="viewed_example">✓ Viewed example response</string>
-    <string name="rating_format">%d/5</string>
+    <!-- Time Plurals -->
+    <plurals name="days_ago">
+        <item quantity="one">%d day ago</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
 
-    <!-- Daily Challenge Screen -->
-    <string name="daily_empathy_challenge">Daily Empathy Challenge</string>
-    <string name="challenge_loading">Loading today\'s challenge…</string>
-    <string name="challenge_completed_title">Great job! You\'ve completed today\'s challenge.</string>
-    <string name="view_your_responses">View Your Responses</string>
-    <string name="no_more_challenges_today">No more challenges today</string>
-    <string name="completed_all_scenarios">You\'ve completed all available scenarios for today. Great work on your empathy practice!</string>
-    <string name="review_your_progress">Review Your Progress</string>
-    <string name="someone_says">Someone says:</string>
-    <string name="how_would_you_respond">How would you respond with empathy?</string>
-    <string name="your_empathetic_response">Your empathetic response</string>
-    <string name="response_placeholder">Type your response here…</string>
-    <string name="submit_response">Submit Response</string>
-    <string name="see_example_response">See Example Response</string>
-    <string name="example_response_label">Example Response:</string>
+    <plurals name="weeks_ago">
+        <item quantity="one">1 week ago</item>
+        <item quantity="other">%d weeks ago</item>
+    </plurals>
+
+    <plurals name="months_ago">
+        <item quantity="one">1 month ago</item>
+        <item quantity="other">%d months ago</item>
+    </plurals>
 
     <!-- User Level Descriptions -->
     <string name="level_1_desc">Beginner - Just starting your journey</string>
@@ -89,6 +135,7 @@
 
     <!-- Streak Status Descriptions -->
     <string name="streak_start">Start your streak today!</string>
+    <string name="streak_start_today">Start your streak today!</string>
     <string name="streak_great_start">Great start! Keep it going.</string>
     <string name="streak_building_momentum">Building momentum! %d days strong.</string>
     <string name="streak_excellent">Excellent streak! %d days in a row.</string>
@@ -98,8 +145,10 @@
     <!-- Motivational Messages -->
     <string name="motivation_welcome">Welcome! Ready to start your empathy journey?</string>
     <string name="motivation_great_start">Great start! Every response makes you more empathetic.</string>
+    <string name="motivation_getting_started">Great start! Every response makes you more empathetic.</string>
     <string name="motivation_building_habits">You\'re building great habits! Keep practicing.</string>
     <string name="motivation_wonderful_progress">Wonderful progress! Your empathy skills are growing.</string>
+    <string name="motivation_good_progress">Wonderful progress! Your empathy skills are growing.</string>
     <string name="motivation_impressive">Impressive dedication! You\'re becoming truly empathetic.</string>
     <string name="motivation_expert">You\'re an empathy expert! Your kindness makes a difference.</string>
 
@@ -130,23 +179,8 @@
     <!-- Time Ago Descriptions -->
     <string name="time_today">Today</string>
     <string name="time_yesterday">Yesterday</string>
-    <plurals name="days_ago">
-        <item quantity="one">%d day ago</item>
-        <item quantity="other">%d days ago</item>
-    </plurals>
-    <plurals name="weeks_ago">
-        <item quantity="one">1 week ago</item>
-        <item quantity="other">%d weeks ago</item>
-    </plurals>
-    <plurals name="months_ago">
-        <item quantity="one">1 month ago</item>
-        <item quantity="other">%d months ago</item>
-    </plurals>
 
     <!-- Content Descriptions for Accessibility -->
-    <string name="cd_streak">Streak</string>
-    <string name="cd_quality">Quality</string>
-    <string name="cd_milestone">Milestone</string>
     <string name="cd_challenge">Challenge</string>
     <string name="cd_no_responses">No responses</string>
     <string name="cd_date">Date</string>
@@ -197,14 +231,11 @@
     <string name="language_system">System Default</string>
     <string name="language_changed">Language changed successfully</string>
 
-    <!-- Difficulty Levels - completely missing from both files -->
+    <!-- Difficulty Levels -->
     <string name="difficulty_very_easy">Very Easy</string>
     <string name="difficulty_easy">Easy</string>
     <string name="difficulty_medium">Medium</string>
     <string name="difficulty_hard">Hard</string>
     <string name="difficulty_very_hard">Very Hard</string>
     <string name="difficulty_unknown">Unknown difficulty</string>
-    <string name="streak_start_today">Start your streak today!</string>
-    <string name="motivation_getting_started">Great start! Every response makes you more empathetic.</string>
-    <string name="motivation_good_progress">Wonderful progress! Your empathy skills are growing.</string>
 </resources>

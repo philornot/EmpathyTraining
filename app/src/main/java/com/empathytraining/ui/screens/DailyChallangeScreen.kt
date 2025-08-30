@@ -1,38 +1,15 @@
 package com.empathytraining.ui.screens
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -44,25 +21,12 @@ import com.empathytraining.data.repository.EmpathyRepository
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-/**
- * Daily Challenge Screen - The main screen of the app
- *
- * This screen handles:
- * - Displaying today's empathy scenario
- * - Collecting user's empathetic response
- * - Showing example response after submission
- * - Tracking user progress and streaks
- * - Motivating user with progress display
- */
 @Composable
 fun DailyChallengeScreen(
     repository: EmpathyRepository,
     onNavigateToHistory: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Timber.d("Composing Daily Challenge Screen")
-
-    // Screen state management
     var todaysScenario by remember { mutableStateOf<EmpathyScenario?>(null) }
     var userResponse by remember { mutableStateOf("") }
     var hasSubmitted by remember { mutableStateOf(false) }
@@ -70,29 +34,15 @@ fun DailyChallengeScreen(
     var isLoading by remember { mutableStateOf(true) }
     var hasDoneTodaysChallenge by remember { mutableStateOf(false) }
 
-    // Coroutines for async operations
     val coroutineScope = rememberCoroutineScope()
+    val userProgress by repository.getUserProgress().collectAsState(initial = null)
 
-    // Collect user progress for motivation display
-    val userProgress by repository.getUserProgress().collectAsState(
-        initial = null
-    )
-
-    // Load today's challenge when screen opens
     LaunchedEffect(Unit) {
-        Timber.d("Loading today's challenge")
-
         try {
-            // Check if user already completed today's challenge
             hasDoneTodaysChallenge = repository.hasDoneTodaysChallenge()
-            Timber.d("Has done today's challenge: $hasDoneTodaysChallenge")
-
             if (!hasDoneTodaysChallenge) {
-                // Get new scenario for today
                 todaysScenario = repository.getTodaysChallenge()
-                Timber.d("Loaded scenario: ${todaysScenario?.id}")
             }
-
             isLoading = false
         } catch (e: Exception) {
             Timber.e(e, "Error loading today's challenge")
@@ -100,7 +50,6 @@ fun DailyChallengeScreen(
         }
     }
 
-    // Main screen content
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -108,76 +57,39 @@ fun DailyChallengeScreen(
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // Header with progress motivation
-        DailyProgressHeader(userProgress = userProgress)
+        // Progress Header
+        ProgressHeader(userProgress)
 
         when {
-            isLoading -> {
-                // Loading state
-                LoadingContent()
-            }
-
-            hasDoneTodaysChallenge -> {
-                // Already completed today's challenge
-                CompletedChallengeContent(
-                    userProgress = userProgress, onNavigateToHistory = onNavigateToHistory
-                )
-            }
-
-            todaysScenario == null -> {
-                // No more scenarios available for today
-                NoScenarioContent(onNavigateToHistory = onNavigateToHistory)
-            }
-
-            else -> {
-                // Active challenge
-                ActiveChallengeContent(
-                    scenario = todaysScenario!!,
-                    userResponse = userResponse,
-                    onResponseChange = { userResponse = it },
-                    hasSubmitted = hasSubmitted,
-                    showExample = showExample,
-                    onSubmit = {
-                        coroutineScope.launch {
-                            try {
-                                Timber.d("Submitting response")
-                                repository.submitResponse(
-                                    scenarioId = todaysScenario!!.id,
-                                    userResponseText = userResponse
-                                )
-                                hasSubmitted = true
-                                Timber.d("Response submitted successfully")
-                            } catch (e: Exception) {
-                                Timber.e(e, "Error submitting response")
-                            }
+            isLoading -> LoadingState()
+            hasDoneTodaysChallenge -> CompletedState(userProgress, onNavigateToHistory)
+            todaysScenario == null -> NoScenarioState(onNavigateToHistory)
+            else -> ChallengeContent(
+                scenario = todaysScenario!!,
+                userResponse = userResponse,
+                onResponseChange = { userResponse = it },
+                hasSubmitted = hasSubmitted,
+                showExample = showExample,
+                onSubmit = {
+                    coroutineScope.launch {
+                        try {
+                            repository.submitResponse(todaysScenario!!.id, userResponse)
+                            hasSubmitted = true
+                        } catch (e: Exception) {
+                            Timber.e(e, "Error submitting response")
                         }
-                    },
-                    onShowExample = {
-                        showExample = true
-                        coroutineScope.launch {
-                            try {
-                                // This would need the response ID, simplified for now
-                                Timber.d("Showing example response")
-                            } catch (e: Exception) {
-                                Timber.e(e, "Error marking example viewed")
-                            }
-                        }
-                    })
-            }
+                    }
+                },
+                onShowExample = { showExample = true })
         }
     }
 }
 
-/** Header section showing user's current progress and motivation */
 @Composable
-private fun DailyProgressHeader(
-    userProgress: UserProgress?,
-    modifier: Modifier = Modifier,
-) {
+private fun ProgressHeader(userProgress: UserProgress?) {
     Card(
-        modifier = modifier.fillMaxWidth(), colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        )
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
     ) {
         Column(
             modifier = Modifier
@@ -186,94 +98,90 @@ private fun DailyProgressHeader(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Daily Empathy Challenge",
+                text = stringResource(R.string.daily_empathy_challenge),
                 style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
                 fontWeight = FontWeight.Bold
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
-
-            if (userProgress != null) {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(24.dp)
-                ) {
-                    // Current streak
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(
-                            text = "${userProgress.currentStreak}",
-                            style = MaterialTheme.typography.headlineLarge,
-                            color = MaterialTheme.colorScheme.primary,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Text(
-                            text = "day streak",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer
-                        )
-                    }
-
-                    // Total responses
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(
-                            text = "${userProgress.totalResponses}",
-                            style = MaterialTheme.typography.headlineLarge,
-                            color = MaterialTheme.colorScheme.secondary,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Text(
-                            text = "responses",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer
-                        )
-                    }
+            userProgress?.let { progress ->
+                Spacer(modifier = Modifier.height(12.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) {
+                    StatItem(
+                        value = "${progress.currentStreak}",
+                        label = stringResource(R.string.day_streak)
+                    )
+                    StatItem(
+                        value = "${progress.totalResponses}",
+                        label = stringResource(R.string.responses)
+                    )
                 }
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Text(
-                    text = userProgress.getStreakStatusDescription(),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    textAlign = TextAlign.Center
-                )
             }
         }
     }
 }
 
-/** Loading state while fetching today's scenario */
 @Composable
-private fun LoadingContent(
-    modifier: Modifier = Modifier,
-) {
+private fun StatItem(value: String, label: String) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = value,
+            style = MaterialTheme.typography.headlineLarge,
+            color = MaterialTheme.colorScheme.primary,
+            fontWeight = FontWeight.Bold
+        )
+        Text(
+            text = label, style = MaterialTheme.typography.bodySmall
+        )
+    }
+}
+
+@Composable
+private fun LoadingState() {
     Box(
-        modifier = modifier.fillMaxWidth(), contentAlignment = Alignment.Center
+        modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             CircularProgressIndicator()
-            Text(
-                text = "Loading today's challenge...", style = MaterialTheme.typography.bodyLarge
-            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(stringResource(R.string.challenge_loading))
         }
     }
 }
 
-/** Content shown when user has already completed today's challenge */
 @Composable
-private fun CompletedChallengeContent(
+private fun CompletedState(
     userProgress: UserProgress?,
     onNavigateToHistory: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
-    Card(
-        modifier = modifier.fillMaxWidth(), colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.secondaryContainer
-        )
-    ) {
+    StatusCard(
+        icon = R.drawable.check_circle,
+        title = stringResource(R.string.challenge_completed),
+        message = userProgress?.getMotivationalMessage()
+            ?: stringResource(R.string.keep_practicing),
+        buttonText = stringResource(R.string.view_responses),
+        onButtonClick = onNavigateToHistory
+    )
+}
+
+@Composable
+private fun NoScenarioState(onNavigateToHistory: () -> Unit) {
+    StatusCard(
+        title = stringResource(R.string.no_more_challenges),
+        message = stringResource(R.string.all_scenarios_completed),
+        buttonText = stringResource(R.string.review_progress),
+        onButtonClick = onNavigateToHistory
+    )
+}
+
+@Composable
+private fun StatusCard(
+    title: String,
+    message: String,
+    buttonText: String,
+    onButtonClick: () -> Unit,
+    icon: Int? = null,
+) {
+    Card(modifier = Modifier.fillMaxWidth()) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -281,76 +189,36 @@ private fun CompletedChallengeContent(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.check_circle),
-                contentDescription = "Completed",
-                tint = MaterialTheme.colorScheme.secondary
-            )
+            icon?.let {
+                Icon(
+                    imageVector = ImageVector.vectorResource(it),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+            }
 
             Text(
-                text = "Great job! You've completed today's challenge.",
+                text = title,
                 style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.SemiBold
             )
 
             Text(
-                text = userProgress?.getMotivationalMessage() ?: "Keep practicing empathy!",
+                text = message,
                 style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
                 textAlign = TextAlign.Center
             )
 
-            FilledTonalButton(
-                onClick = onNavigateToHistory
-            ) {
-                Text("View Your Responses")
+            FilledTonalButton(onClick = onButtonClick) {
+                Text(buttonText)
             }
         }
     }
 }
 
-/** Content shown when no scenarios are available for today */
 @Composable
-private fun NoScenarioContent(
-    onNavigateToHistory: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Card(
-        modifier = modifier.fillMaxWidth()
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            Text(
-                text = "No more challenges today",
-                style = MaterialTheme.typography.headlineSmall,
-                textAlign = TextAlign.Center
-            )
-
-            Text(
-                text = "You've completed all available scenarios for today. Great work on your empathy practice!",
-                style = MaterialTheme.typography.bodyLarge,
-                textAlign = TextAlign.Center
-            )
-
-            FilledTonalButton(
-                onClick = onNavigateToHistory
-            ) {
-                Text("Review Your Progress")
-            }
-        }
-    }
-}
-
-/** Main challenge content with scenario and response input */
-@Composable
-private fun ActiveChallengeContent(
+private fun ChallengeContent(
     scenario: EmpathyScenario,
     userResponse: String,
     onResponseChange: (String) -> Unit,
@@ -358,50 +226,39 @@ private fun ActiveChallengeContent(
     showExample: Boolean,
     onSubmit: () -> Unit,
     onShowExample: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier, verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        // Scenario card
-        Card(
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Column(
-                modifier = Modifier.padding(20.dp)
-            ) {
+    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        // Scenario Card
+        Card {
+            Column(modifier = Modifier.padding(20.dp)) {
                 Text(
-                    text = "Someone says:",
+                    text = stringResource(R.string.someone_says),
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.SemiBold
                 )
-
-                Spacer(modifier = Modifier.height(12.dp))
-
+                Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "\"${scenario.scenarioText}\"",
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Medium
                 )
-
                 Spacer(modifier = Modifier.height(8.dp))
-
                 Text(
-                    text = "How would you respond with empathy?",
+                    text = stringResource(R.string.how_would_you_respond),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }
 
-        // Response input
+        // Response Input or Display
         if (!hasSubmitted) {
             OutlinedTextField(
                 value = userResponse,
                 onValueChange = onResponseChange,
-                label = { Text("Your empathetic response") },
-                placeholder = { Text("Type your response here...") },
+                label = { Text(stringResource(R.string.your_response)) },
+                placeholder = { Text(stringResource(R.string.response_placeholder)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(120.dp),
@@ -414,43 +271,17 @@ private fun ActiveChallengeContent(
                 enabled = userResponse.trim().isNotEmpty(),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.send),
-                    contentDescription = null
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text("Submit Response")
+                Text(stringResource(R.string.submit_response))
             }
-        }
+        } else {
+            // Submitted Response
+            ResponseCard(
+                title = stringResource(R.string.your_response),
+                content = userResponse,
+                containerColor = MaterialTheme.colorScheme.tertiaryContainer
+            )
 
-        // Show submitted response
-        if (hasSubmitted) {
-            Card(
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.tertiaryContainer
-                )
-            ) {
-                Column(
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Text(
-                        text = "Your Response:",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold,
-                        color = MaterialTheme.colorScheme.onTertiaryContainer
-                    )
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    Text(
-                        text = userResponse,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onTertiaryContainer
-                    )
-                }
-            }
-
-            // Show example button or example response
+            // Example Response Section
             if (!showExample) {
                 FilledTonalButton(
                     onClick = onShowExample, modifier = Modifier.fillMaxWidth()
@@ -460,34 +291,36 @@ private fun ActiveChallengeContent(
                         contentDescription = null
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("See Example Response")
+                    Text(stringResource(R.string.see_example))
                 }
             } else {
-                Card(
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.secondaryContainer
-                    )
-                ) {
-                    Column(
-                        modifier = Modifier.padding(16.dp)
-                    ) {
-                        Text(
-                            text = "Example Response:",
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.SemiBold,
-                            color = MaterialTheme.colorScheme.onSecondaryContainer
-                        )
-
-                        Spacer(modifier = Modifier.height(8.dp))
-
-                        Text(
-                            text = scenario.exampleResponse,
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSecondaryContainer
-                        )
-                    }
-                }
+                ResponseCard(
+                    title = stringResource(R.string.example_response),
+                    content = scenario.exampleResponse,
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer
+                )
             }
+        }
+    }
+}
+
+@Composable
+private fun ResponseCard(
+    title: String,
+    content: String,
+    containerColor: androidx.compose.ui.graphics.Color,
+) {
+    Card(colors = CardDefaults.cardColors(containerColor = containerColor)) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = content, style = MaterialTheme.typography.bodyMedium
+            )
         }
     }
 }

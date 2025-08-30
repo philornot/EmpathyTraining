@@ -11,45 +11,101 @@
     <string name="start">Rozpocznij</string>
     <string name="continue_action">Kontynuuj</string>
 
+    <!-- Navigation -->
+    <string name="nav_today">Dziś</string>
+    <string name="nav_history">Historia</string>
+    <string name="nav_progress">Postępy</string>
+
+    <!-- Daily Challenge Screen -->
+    <string name="daily_empathy_challenge">Dzienne Wyzwanie Empatii</string>
+    <string name="day_streak">dni z rzędu</string>
+    <string name="responses">odpowiedzi</string>
+    <string name="challenge_loading">Ładowanie dzisiejszego wyzwania…</string>
+    <string name="challenge_completed">Świetna robota! Ukończyłeś dzisiejsze wyzwanie.</string>
+    <string name="keep_practicing">Kontynuuj ćwiczenie empatii!</string>
+    <string name="view_responses">Zobacz Swoje Odpowiedzi</string>
+    <string name="no_more_challenges">Brak więcej wyzwań na dziś</string>
+    <string name="all_scenarios_completed">Ukończyłeś wszystkie dostępne scenariusze na dziś. Świetna robota!</string>
+    <string name="review_progress">Przejrzyj Swoje Postępy</string>
+    <string name="someone_says">Ktoś mówi:</string>
+    <string name="how_would_you_respond">Jak odpowiedziałbyś z empatią?</string>
+    <string name="your_response">Twoja empatyczna odpowiedź</string>
+    <string name="response_placeholder">Wpisz tutaj swoją odpowiedź…</string>
+    <string name="submit_response">Wyślij Odpowiedź</string>
+    <string name="see_example">Zobacz Przykładową Odpowiedź</string>
+    <string name="example_response">Przykładowa Odpowiedź:</string>
+
+    <!-- Legacy strings to maintain compatibility -->
+    <string name="challenge_completed_title">Świetnie! Ukończyłeś dzisiejsze wyzwanie.</string>
+    <string name="view_your_responses">Pokaż Swoje Odpowiedzi</string>
+    <string name="no_more_challenges_today">Brak więcej wyzwań dziś</string>
+    <string name="completed_all_scenarios">Ukończyłeś wszystkie dostępne scenariusze na dziś. Doskonała praca w ćwiczeniu empatii!</string>
+    <string name="review_your_progress">Przejrzyj Swój Postęp</string>
+    <string name="your_empathetic_response">Twoja empatyczna odpowiedź</string>
+    <string name="see_example_response">Zobacz Przykładową Odpowiedź</string>
+    <string name="example_response_label">Przykładowa Odpowiedź:</string>
+
+    <!-- History Screen -->
+    <string name="response_history">Historia Twoich Odpowiedzi</string>
+    <string name="no_responses_yet">Brak odpowiedzi</string>
+    <string name="complete_first_challenge">Ukończ swoje pierwsze dzienne wyzwanie, aby zobaczyć tutaj swoje odpowiedzi empatyczne.</string>
+    <string name="scenario">Scenariusz:</string>
+    <string name="rating_format">%d/5</string>
+    <string name="character_count">%d znaków</string>
+    <string name="viewed_example">✓ Obejrzano przykładową odpowiedź</string>
+
+    <!-- Legacy history strings -->
+    <string name="history_title">Historia Twoich Odpowiedzi</string>
+    <string name="no_responses_description">Ukończ swoje pierwsze dzienne wyzwanie, aby zobaczyć tutaj swoje odpowiedzi empatyczne.</string>
+    <string name="scenario_label">Scenariusz:</string>
+    <string name="your_response_label">Twoja Odpowiedź:</string>
+    <string name="characters_count">%d znaków</string>
+
     <!-- Progress Screen -->
     <string name="progress_title">Twój Postęp</string>
-    <string name="progress_loading">Ładowanie Twojego postępu…</string>
+    <string name="progress_loading">Ładowanie twoich postępów…</string>
     <string name="level_format">Poziom %d</string>
-    <string name="current_streak">Obecna Passa</string>
+    <string name="cd_streak">Seria</string>
+    <string name="current_streak">Obecna Seria</string>
     <string name="statistics_overview">Przegląd Statystyk</string>
     <string name="total_responses">Łączne Odpowiedzi</string>
     <string name="active_days">Aktywne Dni</string>
     <string name="scenarios_completed">Ukończone Scenariusze</string>
     <string name="activity_rate">Wskaźnik Aktywności</string>
-    <string name="consistency">Systematyczność</string>
+    <string name="consistency">Konsystencja</string>
+    <string name="cd_quality">Jakość</string>
     <string name="response_quality">Jakość Odpowiedzi</string>
-    <string name="avg_characters">śr. znaków</string>
-    <string name="avg_rating">śr. ocena</string>
-    <string name="examples_viewed">obejrzanych przykładów</string>
+    <string name="avg_characters">Śr. Znaków</string>
+    <string name="avg_rating">Śr. Ocena</string>
+    <string name="examples_viewed">Obejrzane Przykłady</string>
+    <string name="cd_milestone">Kamień Milowy</string>
     <string name="next_milestone">Następny Kamień Milowy</string>
-    <string name="milestone_encouragement">Świetna robota! Każda odpowiedź czyni Cię bardziej empatycznym.</string>
+    <string name="milestone_encouragement">Kontynuuj, aby osiągnąć swój następny cel!</string>
     <string name="view_todays_challenge">Zobacz Dzisiejsze Wyzwanie</string>
     <string name="start_todays_challenge">Rozpocznij Dzisiejsze Wyzwanie</string>
 
-    <!-- Streak Days - Polish Plurals -->
+    <!-- Polish Plurals -->
     <plurals name="days_current">
-        <item quantity="one">dzień obecny</item>
-        <item quantity="few">dni obecne</item>
-        <item quantity="many">dni obecnych</item>
-        <item quantity="other">dni obecnych</item>
+        <item quantity="one">%d dzień obecny</item>
+        <item quantity="few">%d dni obecne</item>
+        <item quantity="many">%d dni obecnych</item>
+        <item quantity="other">%d dni obecnych</item>
     </plurals>
+
     <plurals name="days_best">
-        <item quantity="one">dzień najlepszy</item>
-        <item quantity="few">dni najlepsze</item>
-        <item quantity="many">dni najlepszych</item>
-        <item quantity="other">dni najlepszych</item>
+        <item quantity="one">%d dzień najlepszy</item>
+        <item quantity="few">%d dni najlepsze</item>
+        <item quantity="many">%d dni najlepszych</item>
+        <item quantity="other">%d dni najlepszych</item>
     </plurals>
+
     <plurals name="day_streak">
         <item quantity="one">dzień z rzędu</item>
         <item quantity="few">dni z rzędu</item>
         <item quantity="many">dni z rzędu</item>
         <item quantity="other">dni z rzędu</item>
     </plurals>
+
     <plurals name="responses_count">
         <item quantity="one">odpowiedź</item>
         <item quantity="few">odpowiedzi</item>
@@ -57,34 +113,27 @@
         <item quantity="other">odpowiedzi</item>
     </plurals>
 
-    <!-- Streak Status -->
-    <string name="streak_start_today">Rozpocznij swoją passę dzisiaj!</string>
+    <!-- Time Plurals -->
+    <plurals name="days_ago">
+        <item quantity="one">%d dzień temu</item>
+        <item quantity="few">%d dni temu</item>
+        <item quantity="many">%d dni temu</item>
+        <item quantity="other">%d dni temu</item>
+    </plurals>
 
-    <!-- History Screen -->
-    <string name="history_title">Historia Twoich Odpowiedzi</string>
-    <string name="no_responses_yet">Brak odpowiedzi</string>
-    <string name="no_responses_description">Ukończ swoje pierwsze dzienne wyzwanie, aby zobaczyć tutaj swoje odpowiedzi empatyczne.</string>
-    <string name="scenario_label">Scenariusz:</string>
-    <string name="your_response_label">Twoja Odpowiedź:</string>
-    <string name="characters_count">%d znaków</string>
-    <string name="viewed_example">✓ Obejrzano przykładową odpowiedź</string>
-    <string name="rating_format">%d/5</string>
+    <plurals name="weeks_ago">
+        <item quantity="one">1 tydzień temu</item>
+        <item quantity="few">%d tygodnie temu</item>
+        <item quantity="many">%d tygodni temu</item>
+        <item quantity="other">%d tygodni temu</item>
+    </plurals>
 
-    <!-- Daily Challenge Screen -->
-    <string name="daily_empathy_challenge">Dzienne Wyzwanie Empatii</string>
-    <string name="challenge_loading">Ładowanie dzisiejszego wyzwania…</string>
-    <string name="challenge_completed_title">Świetnie! Ukończyłeś dzisiejsze wyzwanie.</string>
-    <string name="view_your_responses">Pokaż Swoje Odpowiedzi</string>
-    <string name="no_more_challenges_today">Brak więcej wyzwań dzisiaj</string>
-    <string name="completed_all_scenarios">Ukończyłeś wszystkie dostępne scenariusze na dziś. Doskonała praca w ćwiczeniu empatii!</string>
-    <string name="review_your_progress">Przejrzyj Swój Postęp</string>
-    <string name="someone_says">Ktoś mówi:</string>
-    <string name="how_would_you_respond">Jak zareagowałbyś z empatią?</string>
-    <string name="your_empathetic_response">Twoja empatyczna odpowiedź</string>
-    <string name="response_placeholder">Wpisz tutaj swoją odpowiedź…</string>
-    <string name="submit_response">Wyślij Odpowiedź</string>
-    <string name="see_example_response">Zobacz Przykładową Odpowiedź</string>
-    <string name="example_response_label">Przykładowa Odpowiedź:</string>
+    <plurals name="months_ago">
+        <item quantity="one">1 miesiąc temu</item>
+        <item quantity="few">%d miesiące temu</item>
+        <item quantity="many">%d miesięcy temu</item>
+        <item quantity="other">%d miesięcy temu</item>
+    </plurals>
 
     <!-- User Level Descriptions -->
     <string name="level_1_desc">Początkujący - Dopiero zaczynasz swoją podróż</string>
@@ -100,6 +149,7 @@
 
     <!-- Streak Status Descriptions -->
     <string name="streak_start">Rozpocznij swoją passę dzisiaj!</string>
+    <string name="streak_start_today">Rozpocznij swoją passę dzisiaj!</string>
     <string name="streak_great_start">Świetny początek! Nie przerywaj.</string>
     <string name="streak_building_momentum">Nabierasz rozpędu! %d dni silnej passy.</string>
     <string name="streak_excellent">Doskonała passa! %d dni z rzędu.</string>
@@ -109,12 +159,12 @@
     <!-- Motivational Messages -->
     <string name="motivation_welcome">Witaj! Gotowy rozpocząć swoją podróż empatii?</string>
     <string name="motivation_great_start">Świetny początek! Każda odpowiedź czyni Cię bardziej empatycznym.</string>
+    <string name="motivation_getting_started">Świetny początek! Każda odpowiedź czyni Cię bardziej empatycznym.</string>
     <string name="motivation_building_habits">Budujesz świetne nawyki! Kontynuuj ćwiczenia.</string>
     <string name="motivation_wonderful_progress">Cudowny postęp! Twoje umiejętności empatii rosną.</string>
+    <string name="motivation_good_progress">Cudowny postęp! Twoje umiejętności empatii rosną.</string>
     <string name="motivation_impressive">Imponujące zaangażowanie! Stajesz się naprawdę empatyczny.</string>
     <string name="motivation_expert">Jesteś ekspertem empatii! Twoja życzliwość ma znaczenie.</string>
-    <string name="motivation_getting_started">Świetny początek! Każda odpowiedź czyni Cię bardziej empatycznym.</string>
-    <string name="motivation_good_progress">Cudowny postęp! Twoje umiejętności empatii rosną.</string>
 
     <!-- Milestone Messages -->
     <string name="milestone_3_days">Odpowiadaj przez 3 dni z rzędu</string>
@@ -143,29 +193,8 @@
     <!-- Time Ago Descriptions -->
     <string name="time_today">Dzisiaj</string>
     <string name="time_yesterday">Wczoraj</string>
-    <plurals name="days_ago">
-        <item quantity="one">%d dzień temu</item>
-        <item quantity="few">%d dni temu</item>
-        <item quantity="many">%d dni temu</item>
-        <item quantity="other">%d dni temu</item>
-    </plurals>
-    <plurals name="weeks_ago">
-        <item quantity="one">1 tydzień temu</item>
-        <item quantity="few">%d tygodnie temu</item>
-        <item quantity="many">%d tygodni temu</item>
-        <item quantity="other">%d tygodni temu</item>
-    </plurals>
-    <plurals name="months_ago">
-        <item quantity="one">1 miesiąc temu</item>
-        <item quantity="few">%d miesiące temu</item>
-        <item quantity="many">%d miesięcy temu</item>
-        <item quantity="other">%d miesięcy temu</item>
-    </plurals>
 
     <!-- Content Descriptions for Accessibility -->
-    <string name="cd_streak">Passa</string>
-    <string name="cd_quality">Jakość</string>
-    <string name="cd_milestone">Kamień milowy</string>
     <string name="cd_challenge">Wyzwanie</string>
     <string name="cd_no_responses">Brak odpowiedzi</string>
     <string name="cd_date">Data</string>
